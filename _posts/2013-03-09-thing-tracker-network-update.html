@@ -1,0 +1,230 @@
+---
+layout: post
+status: publish
+published: true
+title: Thing Tracker Network Update
+
+
+
+date: '2013-03-09 00:58:06 +0100'
+date_gmt: '2013-03-08 23:58:06 +0100'
+categories:
+- Thing Tracker Network
+tags: []
+comments:
+- id: 36218
+  author: dzach
+
+  author_url: ''
+  date: '2013-03-10 18:59:38 +0100'
+  date_gmt: '2013-03-10 17:59:38 +0100'
+  content: "One other ad hoc technology that is easily applicable to web pages and
+    has seen success in the Semantic Web world is <a href=\"http://microformats.org/\"
+    rel=\"nofollow\">Microformats</a>. Many popular web platforms, including Wordpress,
+    that this site uses, Google etc, make extensive use of the Microformat specification,
+    see for e.g. <a href=\"http://microformats.org/wiki/hatom#In_General\" rel=\"nofollow\">hAtom</a>.\r\n\r\nFirefox
+    had a plugin for taking advantage of mf on web pages, named 'Operator+', I'm sure
+    the new elements that appeared in HTML5 will give structured content a good boost,
+    given time."
+- id: 36228
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2013-03-10 20:50:30 +0100'
+  date_gmt: '2013-03-10 19:50:30 +0100'
+  content: Hey dzach, I had considered microformats but came to the conclusion that
+    RDFa is more extensible and would offer more possibilities in the future.  Perhaps
+    I should reread the microformats doc a bit more, but I got the impression that
+    it's popularity stems from addressing a particular set of needs (hCalendar, hCard,
+    hProduct) but wouldn't satisfy the needs of TTN.  As mentioned in the post, I
+    am still just learning all this, so I will happily be corrected.
+- id: 36242
+  author: dzach
+
+  author_url: ''
+  date: '2013-03-10 23:29:16 +0100'
+  date_gmt: '2013-03-10 22:29:16 +0100'
+  content: "Gary\r\nIndeed, RDFa is more extensible, but requires effort and one has
+    to go out of the usual way of authoring a web page. My own brief exposure to RDFa
+    a number of years ago didn't lead to a practical result. On the other hand microformats
+    (which I then arbitrarily extended to suit my needs) needed very little work from
+    design to publish and felt more 'natural'. If gaining momentum is a prerequisite
+    for success then ease of use is important too.\r\n\r\nThe microformat idea lies
+    in using existing HTML attributes and elements in a web page. For instance, looking
+    in a Thingiverse's page source I see:\r\n<code>\r\n<div class=\"thing\" data-page=\"1\">\r\n\t<div
+    class=\"row-fluid\">\r\n\t\t<a href=\"/thing:60216\">\r\n\t\t\t<img src=\"http://...\"\"
+    class=\"img-polaroid\">\r\n\t\t</a>\r\n\t</div>\r\n\t<a href=\"/thing:60216\">\r\n\t\t<div
+    class=\"thing-name\" id=\"thing-name-60216\">Preassembled scissor arm</div>\r\n\t</a>\r\n</div>\r\n<div
+    class=\"thing\">\r\n\t...\r\n</div>\r\n</code>\r\n (I hope the code comes out
+    right)\r\n\r\nThat snippet of code contains the basic elements for a microformat
+    design, in fact it could already be used as one, if only it were consistent and
+    complete: the parent class is 'thing', class attribute 'img-polaroid' contains
+    the front page image, the element with class 'thing-name' contains the thing's
+    name etc.\r\n\r\nThe above is readily harvest-able automatically. The harvesting
+    app can be a javascript bookmarklet running in the browser. Consensus in the 3D
+    printing/maker communities could lead to a consolidated scheme for publishing
+    object designs that everybody could use, as you describe in your Thing Tracker
+    Network post.\r\n\r\nFor another example, had your 3dprint.development-tracker.info
+    site followed this idea, it would be very easy for someone else to harvest that
+    info and go or just do an educated search or whatever.  \r\n\r\nNow why would
+    the 'establishment' want to conform to the standard giving easy access to 'their'
+    data to everyone is a question that has no easy answer.\r\n\r\nJust my 2 cents."
+- id: 36250
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2013-03-11 00:43:23 +0100'
+  date_gmt: '2013-03-10 23:43:23 +0100'
+  content: "I agree that ease of use is an important factor.  \r\n\r\nOne thing that
+    bugs me about microformats is the double use of the class attributes (perhaps
+    this isn't mandatory - I'll read up a bit more when I get chance).  The class
+    attribute already has a role and hijacking it to embed semantic data seems wrong
+    to me (is there a way to prevent class name clashes with css?), whereas the RDFa
+    (and microdata for that matter) use additional attributes which seems more resilient.\r\n\r\nAdding
+    semantic data to the development tracker is definitely a task on my todo list.
+    \ \r\n\r\nAnd promoting the benefits of an open, shared data model would certainly
+    be a hard sell to those players who view the data as 'theirs', as you put it,
+    and whose central aim is to make money.  Taken from the viewpoint of someone wanting
+    to share their data however and it becomes so obvious that the question disappears.
+    \ That is, is the value in the data, or in the sharing of that data?"
+- id: 36266
+  author: dzach
+
+  author_url: ''
+  date: '2013-03-11 02:45:45 +0100'
+  date_gmt: '2013-03-11 01:45:45 +0100'
+  content: "Actually, it is this double use of class attributes that makes microformats
+    interesting and easy to use. One can put many classes in a class attribute, if
+    necessary, and satisfy both CSS and semantic needs. The 'class' attribute is very
+    tolerant in this respect. But even better, one can give classes meaningful names
+    that can be properties in an ontology scheme at the same time they areCSS  defining
+    attributes, without a problem. This exactly is what makes microformats easy to
+    use within the workflow of a web page making process.\r\n\r\nRDFa on the other
+    hand, tries to formalize the property's vocabulary and in doing so it remotes
+    itself from that workflow, becoming something that requires special effort to
+    achieve and not simply adoption of a convention. There are advantages to that
+    solution, but the special effort required is costly, and has no other use than
+    define semantic metadata. In engineering terms I would say that the efficiency
+    of the RDFa design is less than that of MF :)\r\n\r\nIn your Development Tracker
+    category listing page for instance, you use class 'oddrow' to give different background
+    to odd numbered rows, which at the same time are containers or '<abbr title='this
+    could be a microformat property here'>entries</abbr>' in the tracker system. To
+    accomplish the same in a microformat manner you could enter in the class attribute
+    'class=\"oddrow entry\"' and just 'class=\"entry\"' in the even rows. Similarly,
+    you could give proper class names to 'Title', 'Description', 'Source' and 'Status'
+    elements, following a published microformat convention for a 'Thing' ontology
+    and that's all you'd need to do. Or use the new   etc elements of HTML5 with class
+    appropriate attributes, thus doubling the ways to manipulate CSS and semantics
+    for the content.\r\n\r\nBut I feel I'm imposing my preference here.\r\nCheers!"
+- id: 36422
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2013-03-11 20:43:18 +0100'
+  date_gmt: '2013-03-11 19:43:18 +0100'
+  content: "I'm enjoying hearing more about microformats, so feel free to push your
+    preference here :)\r\n\r\nI can see the \"neatness\" of utilising the class attribute,
+    but what happens if we define a microformat with certain attributes, and one of
+    these clashes with someone's existing css names? e.g. we set an attribute to be
+    \"title\" and someone wants to mark up their page but already uses class=\"title\"
+    for something unrelated (but still valid, such as title of a person rather than
+    title of a Thing)  Is there a convention to circumvent this, or does the person
+    simply have to alter their css naming to comply?"
+- id: 36454
+  author: dzach
+
+  author_url: ''
+  date: '2013-03-11 23:54:15 +0100'
+  date_gmt: '2013-03-11 22:54:15 +0100'
+  content: "For the MF to be valid a minimum structure will have to be in place, e.g.
+    a 'title' class inside a 'thingy' class will separate the 'thingy' MF title from
+    the rest. Another way of doing this ambiguously would be to use a special namespace,
+    but microformats avoid using  namespaces, as far as I remember. RDFa uses namespaces;
+    a title property could be 'dc:title' for instance in RDFa.\r\n\r\nTo write a microformat
+    spec there is a <a href=\"http://microformats.org/wiki/process\" rel=\"nofollow\">formal
+    process</a> that needs to be followed, which takes effort and time, but maybe
+    it's worth it. I remember contributing a draft idea about a 4D time-space microformat
+    5-6 years ago, but didn't pursue it further. I don't think there is any proposal
+    for an 'hThing' MF yet. Of course one can start using the microformat principles
+    right away, without any formal proccess in place. I usually do that in any web
+    page I develop, it helps me structure the content. Most microformats require 'examples
+    in the wild' , that is, applications of the proposed MF in the real world, in
+    a website."
+- id: 36714
+  author: dzach
+
+  author_url: ''
+  date: '2013-03-12 18:54:01 +0100'
+  date_gmt: '2013-03-12 17:54:01 +0100'
+  content: "Reading again the description of Thing Tracker Network I was wondering
+    if the established syndication formats could be of use. \r\n\r\nAnother way of
+    announcing and sharing information and resources about one's creations would be
+    the well known Atom and <a href=\"http://www.rssboard.org/rss-specification\"
+    rel=\"nofollow\">RSS</a> syndications formats. If you look for example into <a
+    href=\"http://www.thingiverse.com/rss/newest\" rel=\"nofollow\">Thingiverse's
+    RSS feed</a> source, you will find most of the \"Thing Tracker Network\" required
+    data already present there. Subscribing to such a channel (or tracker) is done
+    by just clicking the RSS button on the browser.\r\n\r\nSpeaking about namespaces
+    in my comment above, namespaces in RSS can be used to extend it to any king of
+    vocabulary that follows the <a href=\"http://www.w3.org/TR/REC-xml-names/\" rel=\"nofollow\">W3C
+    specification</a>. I think, parts of the 'ttn' vocabulary that are not covered
+    by the RSS spec can be inserted there with the help of an appropriate namespace.\r\n\r\nSome
+    sites offer the whole of their contents through RSS feeds. Github don't seem to
+    be offering downloadable content information in their RSS though."
+- id: 36729
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2013-03-12 19:57:12 +0100'
+  date_gmt: '2013-03-12 18:57:12 +0100'
+  content: Hi dzach, I'm a big fan of syndicated feeds and agree that using them as
+    a way of emitting Thing updates is a good idea.  Being able to mark up the feed
+    with MF, or RDFa, would mean downstream systems could use the data contained directly
+    - which is really nice.  It's on the list!  :)
+---
+<p>Time flies! It's been almost two months since I posted about the Thing Tracker Network (TTN). Recently progress has slowed down to a crawl, mainly due to other priorities (<a href="https://reprapmagazine.github.io/reprapmagazine.com">RepRap Magazine</a>, work, family, imminent house move, etc, y'know the usual things), and also because I am taking a slight detour with regard to TTN which I want to briefly describe here.</p>
+<p>After the initial excitement of announcing the proposal there have been a series of suggestions and improvements which I have attempted to merge into the specification. I think the current version is a reasonable basis for defining Things and the relationships between them. Expanding to include the possibility of adding detailed bill-of-materials and tracker metadata, for example.</p>
+<p><strong>A quick aside</strong>: there are now several resources that make up the infrastructure of TTN which I will quickly list:</p>
+<ul>
+<li><a href="https://garyhodgson.github.io/thingtracker.net">The website</a> is the public face of the proposal and will be updated on an ad-hoc basis to reflect the current state of the proposal.</li>
+<li><a href="https://github.com/garyhodgson/thing-tracker-network">The Github repository</a> holds the live specification along with examples. In the near future it will hopefully hold reference libraries, tools, and example applications. There is also a <a href="https://github.com/garyhodgson/thing-tracker-network/wiki">wiki</a> and <a href="https://github.com/garyhodgson/thing-tracker-network/issues">issue tracker</a> to handle documentation and tasks.</li>
+<li><del>A Google+ community</del> to hold discussions, and an associated <del>G+ page</del>&nbsp;which is the source of "official" statements (as opposed to my personal thoughts as a fellow hacker).</li>
+</ul>
+
+<p>Several people have mentioned in passing that the technology of the fabled Semantic Web, now known as <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a> apparently, may be of interest. A little internet research led me to a useful resource in the <a href="http://linkeddatabook.com/book">Linked Data Book</a>, and the more I read of it the more I realised that the TTN sounds like it is basically trying to be a Linked Data vocabulary. Consequently I think it is worth exploring the idea further, to see whether the goal of the TTN should be to define such a vocabulary along with tools and libraries to support it.</p>
+<p>There are several considerations should a Linked Data approach be taken.</p>
+<ul>
+<li>Many of the concerns that have cropped up in discussing TTN have already been discussed in the Semantic Web world, such as identity, security, and reliability.</li>
+<li>A set of tools and libraries have already been developed which could potentially be utilised.</li>
+<li>Linked Data seems ideally suited for describing the types of things the TTN is all about.</li>
+<li>Using the language and specifications of the Semantic Web might interface the TTN to the wider internet of things, as espoused by Tim Berners-Lee.</li>
+<li>The Linked Data specifications (e.g. RDFa,RDFS,OWL) are, however, more complex than those originally envisaged by TTN, and the learning curve to fully understand how the network works may be steeper.</li>
+<li>Using a recognised and widely adopted standard would seem preferable than devising a proprietary, albeit open, standard.</li>
+</ul>
+<p>From my reading so far, I believe the following would be possible using Linked Data:</p>
+<ul>
+<li>Define a vocabulary using <a href="http://en.wikipedia.org/wiki/RDFS">RDFS</a> (Resource Description Framework Schema) which would be similar (if not identical) to the current TTN json schema.</li>
+<li>Mark up a Thing with metadata attributes using one of the following ways:
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Rdfa">RDFa</a> (Resource Description Framework in attributes) to embed the TTN attributes within a web page describing a Thing.</li>
+<li><a href="http://en.wikipedia.org/wiki/JSON-LD">JSON-LD</a> (JavaScript Object Notation for Linked Data) to describe the Thing in a JSON document.</li>
+<li><a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Traditional RDF</a> (Resource Description Framework) in an XML document.</li>
+</ul>
+</li>
+<li>Use existing libraries, or build new ones, to interact and work with this data.</li>
+</ul>
+<p>In fact I hope that the RDFS &amp; JSON-LD combination might already be very close to the work we have done so far.</p>
+
+<p>To date my playing and experimenting has been limited. I have started formulating an RDF Schema (<a href="https://raw.githubusercontent.com/garyhodgson/thingtracker.net/gh-pages/thingtracker.rdfs">thingtracker.rdfs</a>) and have added some RDFa to the example Githubiverse site (<a href="http://garyhodgson.github.com/githubiverse-tst">http://garyhodgson.github.com/githubiverse-tst</a>), which appears to be readable according to the few tools I have tried out.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2013/03/rdfa_source.png"><img class="size-full wp-image-1356" alt="RDFa Source" src="/reprap/assets/images/wp-content/uploads/2013/03/rdfa_source.png" width="819" height="349" /></a>
+  <p><small>Snippet from source html. New RDFa attributes highlighted.</small></p>
+</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2013/03/screenshot_2013-03-09_002502.png"><img class="size-large wp-image-1357" alt="Parsed RDFa" src="/reprap/assets/images/wp-content/uploads/2013/03/screenshot_2013-03-09_002502-1024x575.png" width="620" height="348" /></a>
+  <p><small>RDFa parsed using Green Turtle RDFa extension for Chrome browser.</small></p>
+</p>
+
+<p>There is a whole raft of things I still need to learn (help &amp; guidance very welcome!), and this is still only an exploratory dive into Linked Data, but so far I feel it is worth pursuing further.</p>

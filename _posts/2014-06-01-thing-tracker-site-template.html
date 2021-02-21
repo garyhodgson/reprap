@@ -1,0 +1,75 @@
+---
+layout: post
+status: publish
+published: true
+title: Thing Tracker Site Template
+date: '2014-06-01 14:59:43 +0200'
+date_gmt: '2014-06-01 13:59:43 +0200'
+categories:
+- Thing Tracker Network
+tags: []
+comments: []
+---
+<p>One aspect of the Thing Tracker Network that is perhaps not terribly clear is that it is not dependent on any particular client, library or vendor. This means that anyone could start participating in the network straight away.</p>
+<p>As the TTN client that I am working on is taking it's time I thought it worthwhile to outline how anyone can start integrating with the network today.</p>
+<p>At it's heart the TTN is simply a web API, where meta-data about Things is stored in <a href="http://www.json.org/">JSON</a> formatted documents and made available on the web. To this end it would be simple for someone to create the document by hand and host it, either themselves or via a service such as <a href="http://garyhodgson.github.io/thing-tracker-site-template/tracker.json">Github</a>, <del>Google Drive</del>, etc.</p>
+<p>Whilst JSON is quite an easy format to read it isn't meant for humans. The TTN client, and similar services, will happily pick up these JSON documents and work with them (searching, indexing, presenting, etc.) but it would be nice to be able to view the information in a human-friendly way.</p>
+<p>Therefore I have thrown together a simple site template which when matched with a TTN Tracker JSON document will provide a web site suitable for publishing. It is hosted on Github (<a href="https://github.com/garyhodgson/thing-tracker-site-template">https://github.com/garyhodgson/thing-tracker-site-template</a>) and there is a demo site on&nbsp;<a href="http://garyhodgson.github.io/thing-tracker-site-template/#/">Github Pages</a> and also via <del>Google Drive</del> (just to show an alternative option).</p>
+<p>&nbsp;</p>
+<p><a href="/reprap/assets/images/wp-content/uploads/2014/06/screenshot_2014-06-01_153841.png"><img class="aligncenter wp-image-1435 size-full" src="/reprap/assets/images/wp-content/uploads/2014/06/screenshot_2014-06-01_153841.png" alt="Screenshot of thing-tracker-site-template" /></a></p>
+<p>&nbsp;</p>
+<h2>Usage</h2>
+<p>The steps to set up a site are quite straightforward and are also listed in the Github project readme. I will list them here again as they are so few:</p>
+<ul>
+<li><a href="https://github.com/garyhodgson/thing-tracker-site-template">Clone</a> or copy (<a href="https://github.com/garyhodgson/thing-tracker-site-template/archive/master.zip">zip</a>) the thing-tracker-site-template project.</li>
+<li>Modify the contents of <em>tracker.json</em> adding meta-data about your Things.
+<ul>
+<li>Most attributes are self-explanatory, and most are optional so if something is not needed it can usually be deleted. See the <a href="https://github.com/garyhodgson/thing-tracker-network">specification</a> for details, and feel free to ask in the <a href="http://bit.ly/ttn-g-plus-community">community</a> for advice.</li>
+<li>If JSON is new to you then have a look at the <a href="http://www.json.org/">JSON</a>&nbsp;website, or perhaps the lighter introduction <a href="http://www.elated.com/articles/json-basics/">here</a>.</li>
+</ul>
+</li>
+<li>It is recommended to add thumbnail images in the <em>thumbnails</em>&nbsp;folder so they are loaded locally to the website. These can be referenced in the tracker directly, e.g.
+<pre class="brush:js">"thumbnailUrls":[
+  "thumbnails/my_thumbnail.png"
+]</pre>
+</li>
+<li>Be careful to check that the&nbsp;<em>tracker.json</em>&nbsp;is valid - a wrong trailing comma can cause the site to fail to render. &nbsp;The <a href="http://jsonlint.com/">JSONLint validator</a> may help.</li>
+<li>Optionally feel free to modify the look and feel of the site. The site uses <a href="https://angularjs.org/">AngularJS</a> and <a href="http://angular-ui.github.io/bootstrap">AngularUI Bootstrap</a>, and the main css file (<em>css\ttn-client.css</em>) is relatively straight-forward to modify.</li>
+<li>Once satisfied upload the site to your favourite hosting provider.</li>
+</ul>
+<h3>Hosting on Github Pages</h3>
+<ul>
+<li>Create a public repository on Github.
+<ul>
+<li>"thingtracker" would be a good name as the resulting website would be hosted at&nbsp;https://[user name].github.io/thingtracker</li>
+<li>Remember also that custom domain names can be pointed at Github Pages.</li>
+</ul>
+</li>
+<li>Clone locally and create a branch named "gh-pages".</li>
+<li>Copy your thing-tracker-site-template into this folder.</li>
+<li>Commit and push to github.</li>
+<li>After a short while the site should be available via https://[user name].github.io/[project name].</li>
+</ul>
+<h3>Hosting on Google Drive</h3>
+<ul>
+<li>Create a folder in Google Drive.</li>
+<li>Copy your thing-tracker-site-template into this folder.</li>
+<li>Edit the share permissions so it is public.</li>
+<li>Make a note of the folder id from the address bar, e.g. https://drive.google.com/#folders/<strong>0B1a6oY6Gw7BJRU9MSV9KNDg2SU0</strong></li>
+<li>The site should then be available via https://www.googledrive.com/host/[folder id]/</li>
+</ul>
+<h2>Caveats</h2>
+<p>Obviously this approach has several shortcomings.</p>
+<h3>Editing the tracker file in JSON is not terribly user friendly</h3>
+<p>At first I thought that having to edit the tracker.json file directly would be a show-stopper, but I've come around to the idea that there are several benefits: it can be edited in any text editor; it can be edited directly online in Github; the syntax is easy to pick up, etc. Plus, having to enter all the data in a web form is also quite a hassle, and also prone to error.</p>
+<p>The disadvantages are that the format has to be correct in order for the site to render (trailing commas is a good example of where it's easy to trip up). Double quotation marks have to be escaped. It is probably not very clear for non-techies how to approach editing the file.</p>
+<p>Therefore the TTN client, and perhaps future iterations of the site-template will have a more accessible forms approach to entering and modifying the data.</p>
+<h3>Having all things listed in one tracker file is not terribly scalable</h3>
+<p>This is actually already solved but not yet documented or fully tested. Each Thing in the Tracker could instead consist of a "refUrl" attribute pointing to another JSON document which contains the Thing information. Take a look at the recently updated <a href="http://thingtracker.net/specification.html#scalability">Specification page</a> for more details.</p>
+<h3>The resulting website is very simplistic</h3>
+<p>There will be no design prizes awarded for the web site. However it was quick to set up, neutral in tone, and is similar in nature to the Githubiverse design. Anyone with basic skills in web design will be able to modify the CSS in order to spruce up the look and feel. Who knows, perhaps TTN Site "Skins" will start making the rounds?</p>
+<h3>The website is missing numerous useful features</h3>
+<p>Search being the foremost example, commenting perhaps next. Remember that this is simply a starting point in order to get data into the Network. Once services such as search engines become available it should be trivial to plug these in. Implementing a local keyword search would also be a reasonably easy task if it is desired.</p>
+<p>If anyone has more suggestions I would be happy to hear about them. Feel free to raise issues in the Github project or simply comment below.</p>
+<p><span style="color: #444444;">[color-box]</span>I should mention that I consider this to be a partial replacement of Githubiverse, which suffered from two flaws. Being a pure client side solution there is no (secure) way to provide keys for the Github API, and the default number of calls is simply not usable. Secondly, it assumes that projects are stored in Github, which of course may not be the case. The TTN Site Template requires more work to set up and maintain (at the moment) but it is more flexible, not vendor specific, and a step towards populating the Thing Tracker Network.<span style="color: #444444;">[/color-box]</span></p>
+<p>So I hope this article gives an idea of how accessible and open the Thing Tracker Network aims to be. &nbsp;As ever, let me know your thoughts and opinions.</p>

@@ -1,0 +1,746 @@
+---
+layout: post
+status: publish
+published: true
+title: Perfecting Pulleys Redux
+
+
+
+date: '2011-06-29 21:26:09 +0200'
+date_gmt: '2011-06-29 20:26:09 +0200'
+categories:
+- Printing
+tags: []
+comments:
+- id: 526
+  author: John Oddy
+
+  author_url: ''
+  date: '2011-08-23 17:59:13 +0200'
+  date_gmt: '2011-08-23 16:59:13 +0200'
+  content: On my newly built Prusa I had tried all sorts of skeinforge settings without
+    much success, but these gave me some great prints. Thanks Gary.
+- id: 527
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2011-08-23 18:36:32 +0200'
+  date_gmt: '2011-08-23 17:36:32 +0200'
+  content: That's great to hear! Glad they proved useful.
+---
+<p>The self proclaimed "pulley nirvana" from <a title="Finding Problems, Resolving Problems" href="{% post_url 2011-05-10-finding-problems-resolving-problems %}">a previous post</a> didn't last long.  It seems that changing extruder, filament, or perhaps the weather, had caused a regression in the pulley prints I need for my upcoming Huxley/Mini-Mendel, even though the same gcode was used - with the cool setting and a slower feed/flow rate. The print goes fine until a third through the spurs of the gear, and then the flow splutters and starts, causing a very deformed (and unusable) gear.</p>
+
+<p><a rel="attachment wp-att-684" href="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04493.jpg/"><img class="aligncenter size-medium wp-image-684" title="20110628-DSC04493" src="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04493-225x300.jpg" alt="" width="225" height="300" /></a></p>
+
+<p>&nbsp;</p>
+
+<p>At first I thought the cause might lie in too high a temperature, and so I reduced the hot end temperature to 180&deg;C (from 195&deg;C), and also placed a desktop fan adjacent to the bed, on the lowest setting.  The results were still poor.</p>
+
+<p><a rel="attachment wp-att-685" href="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04494.jpg"><img class="aligncenter size-medium wp-image-685" title="20110628-DSC04494" src="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04494-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+<p>It seems that the Dimension module in Skeinforge was retracting the filament too much (because the speed was so much lower, it had more time to retract) and consequently the beginning of each layer on the spurs was receiving less and less material. Hence the deformity.  Changing this value from 1.3 to 0.2 brought about much better results.</p>
+
+<p><a rel="attachment wp-att-686" href="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04495.jpg"><img class="aligncenter size-medium wp-image-686" title="20110628-DSC04495" src="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04495-225x300.jpg" alt="" width="225" height="300" /></a>
+
+<a rel="attachment wp-att-687" href="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04498.jpg"><img class="aligncenter size-medium wp-image-687" title="20110628-DSC04498" src="/reprap/assets/images/wp-content/uploads/2011/06/20110628-DSC04498-225x300.jpg" alt="" width="225" height="300" /></a></p>
+
+<p>Not perfect, but usable, and a step in the right direction.</p>
+<p>Below are the Skeinforge settings used in case they are useful.</p>
+<h3>Skeinforge Settings</h3>
+<table cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<th colspan="2"> <a>Important</a></th>
+</tr>
+<tr>
+<td>Layer Thickness (mm):</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Perimeter Width over Thickness (ratio):</td>
+<td>1.4</td>
+</tr>
+<tr>
+<td>Infill Solidity (ratio):</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>Feed Rate (mm/s):</td>
+<td>25.0</td>
+</tr>
+<tr>
+<td>Flow Rate Setting (float):</td>
+<td>25.0</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="dimension">dimension</a></th>
+</tr>
+<tr>
+<td>Absolute Extrusion Distance</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Relative Extrusion Distance</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Extruder Retraction Speed (mm/s):</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td>Filament Diameter (mm):</td>
+<td>2.85</td>
+</tr>
+<tr>
+<td>Filament Packing Density (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Retraction Distance (millimeters):</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Restart Extra Distance (millimeters):</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+
+<table cellspacing="0" cellpadding="2">
+<tbody>
+<tr>
+<th colspan="2"> <a name="carve">carve</a></th>
+</tr>
+<tr>
+<td>Add Layer Template to SVG</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Extra Decimal Places (float):</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>Import Coarseness (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Infill in Direction of Bridge</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Layer Thickness (mm):</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Layers From (index):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Layers To (index):</td>
+<td>912345678</td>
+</tr>
+<tr>
+<td>Correct Mesh</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Unproven Mesh</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Perimeter Width over Thickness (ratio):</td>
+<td>1.4</td>
+</tr>
+<tr>
+<td>SVG Viewer:</td>
+<td>webbrowser</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="chop">chop</a></th>
+</tr>
+<tr>
+<td>Add Extra Top Layer if Necessary</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Add Layer Template to SVG</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Extra Decimal Places (float):</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>Import Coarseness (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Layer Thickness (mm):</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>Layers From (index):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Layers To (index):</td>
+<td>999999999</td>
+</tr>
+<tr>
+<td>Correct Mesh</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Unproven Mesh</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Perimeter Width (mm):</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>SVG Viewer:</td>
+<td>webbrowser</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="comb">comb</a></th>
+</tr>
+<tr>
+<td>Activate Comb</td>
+<td>True</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="cool">cool</a></th>
+</tr>
+<tr>
+<td>Activate Cool</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Bridge Cool (Celcius):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Orbit</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Slow Down</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Maximum Cool (Celcius):</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>Minimum Layer Time (seconds):</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>Minimum Orbital Radius (millimeters):</td>
+<td>10.0</td>
+</tr>
+<tr>
+<td>Name of Cool End File:</td>
+<td>cool_end.gcode</td>
+</tr>
+<tr>
+<td>Name of Cool Start File:</td>
+<td>cool_start.gcode</td>
+</tr>
+<tr>
+<td>Turn Fan On at Beginning</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Turn Fan Off at Ending</td>
+<td>True</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="dimension">dimension</a></th>
+</tr>
+<tr>
+<td>Activate Dimension</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Absolute Extrusion Distance</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Relative Extrusion Distance</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Extruder Retraction Speed (mm/s):</td>
+<td>20.0</td>
+</tr>
+<tr>
+<td>Filament Diameter (mm):</td>
+<td>2.85</td>
+</tr>
+<tr>
+<td>Filament Packing Density (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Retraction Distance (millimeters):</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Restart Extra Distance (millimeters):</td>
+<td>0.0</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="fill">fill</a></th>
+</tr>
+<tr>
+<td>Activate Fill:</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Diaphragm Period (layers):</td>
+<td>100</td>
+</tr>
+<tr>
+<td>Diaphragm Thickness (layers):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Extra Shells on Alternating Solid Layer (layers):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Extra Shells on Base (layers):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Extra Shells on Sparse Layer (layers):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Grid Circle Separation over Perimeter Width (ratio):</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Grid Extra Overlap (ratio):</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>Grid Junction Separation Band Height (layers):</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Grid Junction Separation over Octogon Radius At End (ratio):</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Grid Junction Separation over Octogon Radius At Middle (ratio):</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Infill Begin Rotation (degrees):</td>
+<td>45.0</td>
+</tr>
+<tr>
+<td>Infill Begin Rotation Repeat (layers):</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Infill Odd Layer Extra Rotation (degrees):</td>
+<td>90.0</td>
+</tr>
+<tr>
+<td>Grid Circular</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Grid Hexagonal</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Grid Rectangular</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Line</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Infill Perimeter Overlap (ratio):</td>
+<td>0.15</td>
+</tr>
+<tr>
+<td>Infill Solidity (ratio):</td>
+<td>0.3</td>
+</tr>
+<tr>
+<td>Infill Width over Thickness (ratio):</td>
+<td>1.3</td>
+</tr>
+<tr>
+<td>Solid Surface Thickness (layers):</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Lower Left</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Nearest</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Infill > Loops > Perimeter</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Infill > Perimeter > Loops</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Loops > Infill > Perimeter</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Loops > Perimeter > Infill</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Perimeter > Infill > Loops</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Perimeter > Loops > Infill</td>
+<td>False</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="home">home</a></th>
+</tr>
+<tr>
+<td>Activate Home</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Name of Homing File:</td>
+<td>homing.gcode</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="inset">inset</a></th>
+</tr>
+<tr>
+<td>Add Custom Code for Temperature Reading</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Bridge Width Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Ascending Area</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Descending Area</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Overlap Removal Width over Perimeter Width (ratio):</td>
+<td>0.6</td>
+</tr>
+<tr>
+<td>Turn Extruder Heater Off at Shut Down</td>
+<td>True</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="limit">limit</a></th>
+</tr>
+<tr>
+<td>Activate Limit</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Maximum Initial Feed Rate (mm/s):</td>
+<td>80.0</td>
+</tr>
+<tr>
+<td>Maximum Z Feed Rate (mm/s):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="multiply">multiply</a></th>
+</tr>
+<tr>
+<td>Activate Multiply:</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Center X (mm):</td>
+<td>50.0</td>
+</tr>
+<tr>
+<td>Center Y (mm):</td>
+<td>50.0</td>
+</tr>
+<tr>
+<td>Number of Columns (integer):</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Number of Rows (integer):</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Separation over Perimeter Width (ratio):</td>
+<td>15.0</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="preface">preface</a></th>
+</tr>
+<tr>
+<td>Name of End File:</td>
+<td>end.gcode</td>
+</tr>
+<tr>
+<td>Name of Start File:</td>
+<td>startMendel05l04PLA.gcode</td>
+</tr>
+<tr>
+<td>Set Positioning to Absolute</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Set Units to Millimeters</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Start at Home</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Turn Extruder Off at Shut Down</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Turn Extruder Off at Start Up</td>
+<td>False</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="raft">raft</a></th>
+</tr>
+<tr>
+<td>Activate Raft</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Add Raft, Elevate Nozzle, Orbit:</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Base Feed Rate Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Base Flow Rate Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Base Infill Density (ratio):</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>Base Layer Thickness over Layer Thickness:</td>
+<td>2.0</td>
+</tr>
+<tr>
+<td>Base Layers (integer):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Base Nozzle Lift over Base Layer Thickness (ratio):</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>Initial Circling:</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Infill Overhang over Extrusion Width (ratio):</td>
+<td>0.05</td>
+</tr>
+<tr>
+<td>Interface Feed Rate Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Interface Flow Rate Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Interface Infill Density (ratio):</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>Interface Layer Thickness over Layer Thickness:</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Interface Layers (integer):</td>
+<td>0</td>
+</tr>
+<tr>
+<td>Interface Nozzle Lift over Interface Layer Thickness (ratio):</td>
+<td>0.45</td>
+</tr>
+<tr>
+<td>Name of Support End File:</td>
+<td>support_end.gcode</td>
+</tr>
+<tr>
+<td>Name of Support Start File:</td>
+<td>support_start.gcode</td>
+</tr>
+<tr>
+<td>Object First Layer Feed Rate Infill Multiplier (ratio):</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Object First Layer Feed Rate Perimeter Multiplier (ratio):</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Object First Layer Flow Rate Infill Multiplier (ratio):</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Object First Layer Flow Rate Perimeter Multiplier (ratio):</td>
+<td>0.4</td>
+</tr>
+<tr>
+<td>Operating Nozzle Lift over Layer Thickness (ratio):</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>Raft Additional Margin over Length (%):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Raft Margin (mm):</td>
+<td>3.0</td>
+</tr>
+<tr>
+<td>Support Cross Hatch</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Support Flow Rate over Operating Flow Rate (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Support Gap over Perimeter Extrusion Width (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>None</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Empty Layers Only</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Everywhere</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Exterior Only</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Support Minimum Angle (degrees):</td>
+<td>60.0</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="speed">speed</a></th>
+</tr>
+<tr>
+<td>Activate Speed:</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Add Flow Rate:</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Bridge Feed Rate Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Bridge Flow Rate Multiplier (ratio):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Duty Cyle at Beginning (portion):</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>Duty Cyle at Ending (portion):</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Feed Rate (mm/s):</td>
+<td>25.0</td>
+</tr>
+<tr>
+<td>Flow Rate Setting (float):</td>
+<td>25.0</td>
+</tr>
+<tr>
+<td>Orbital Feed Rate over Operating Feed Rate (ratio):</td>
+<td>0.5</td>
+</tr>
+<tr>
+<td>Perimeter Feed Rate over Operating Feed Rate (ratio):</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Perimeter Flow Rate over Operating Flow Rate (ratio):</td>
+<td>0.7</td>
+</tr>
+<tr>
+<td>Travel Feed Rate (mm/s):</td>
+<td>30.0</td>
+</tr>
+<tr>
+<th colspan="2"> <a name="stretch">stretch</a></th>
+</tr>
+<tr>
+<td>Activate Stretch</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Cross Limit Distance Over Perimeter Width (ratio):</td>
+<td>5.0</td>
+</tr>
+<tr>
+<td>Loop Stretch Over Perimeter Width (ratio):</td>
+<td>0.11</td>
+</tr>
+<tr>
+<td>Path Stretch Over Perimeter Width (ratio):</td>
+<td>0.0</td>
+</tr>
+<tr>
+<td>Perimeter Inside Stretch Over Perimeter Width (ratio):</td>
+<td>0.64</td>
+</tr>
+<tr>
+<td>Perimeter Outside Stretch Over Perimeter Width (ratio):</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>Stretch From Distance Over Perimeter Width (ratio):</td>
+<td>2.0</td>
+</tr>
+</tbody>
+</table>

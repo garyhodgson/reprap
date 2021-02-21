@@ -1,0 +1,46 @@
+---
+layout: post
+status: publish
+published: true
+title: Improved Calibration of Extruder
+
+
+
+date: '2011-03-26 01:01:06 +0100'
+date_gmt: '2011-03-26 00:01:06 +0100'
+categories:
+- Extruder
+- Printing
+tags: []
+comments: []
+---
+<p>After finding the <a href="https://spreadsheets.google.com/ccc?key=0AnHvkIQkVjKpdDlnbzJtQXV0cGdCMGVMdGpfUDJ6bmc&amp;hl=en_GB">Extruder Steps Calculation Spreadsheet</a> on the <a href="http://www.brokentoaster.com/blog/?p=358">brokentoaster</a> blog I calibrated the extruder to produce better results. &nbsp;The important thing it seems is to measure everything on your own gear, and don't take it for granted that the default settings will just do.</p>
+<p>My gear ratio is 3.55 (not 5); the extruded filament diameter is more like 0.9 mm (not 0.5, although I will measure this again tomorrow); the Pinch Wheel Diameter (PWD) is 6.7 mm (not 8) and the steps per revolution is 3200 (after taking into account the 1/16 microstep setting). &nbsp;Consequently, the E_STEPS_PER_MM comes out at 48.5 according to the spreadsheet, a much higher value than the original setting of 22 in the Tonokip firmware I am using. &nbsp;The initial results seem much better. &nbsp;Still&nbsp;much room for improvement - but I was able to print a (rough) replacement end-stop holder, after my Z axis holder broke from over-zealous tightening last night.</p>
+
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/03/20110325-DSC03976-2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/03/20110325-DSC03976-2-300x285.jpg" alt="" width="300" height="285" />
+  </a>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/03/20110326-20110326_MK5II_6346-2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/03/20110326-20110326_MK5II_6346-2-300x250.jpg" alt="" width="300" height="250" />
+  </a>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/03/20110326-20110326_MK5II_6353-2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/03/20110326-20110326_MK5II_6353-2-300x200.jpg" alt="" width="300" height="200" />
+  </a>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/03/20110326-20110326_MK5II_6355-2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/03/20110326-20110326_MK5II_6355-2-300x200.jpg" alt="" width="300" height="200" />
+  </a>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/03/20110325-DSC03968-2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/03/20110325-DSC03968-2-300x235.jpg" alt="" width="300" height="235" />
+  </a>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/03/20110325-DSC03973-2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/03/20110325-DSC03973-2-300x225.jpg" alt="" width="300" height="225" />
+  </a>
+</p>
+
+<p>Hopefully I will find time to formulate the process I went through and add it to the wiki, or add to an existing page if it already exists. &nbsp;I think these calibration steps, together with getting the right firmware/host combination, is a potential sticking point for newcomers, and providing clear directions and help would really help.</p>

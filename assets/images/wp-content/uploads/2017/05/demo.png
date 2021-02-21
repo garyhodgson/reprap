@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "width": 271,
+  "height": 83,
+  "duration": 17.425758,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "cygwin",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.942696,
+      "\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ "
+    ],
+    [
+      1.524334,
+      "l"
+    ],
+    [
+      0.12262,
+      "s"
+    ],
+    [
+      0.143135,
+      " "
+    ],
+    [
+      0.38375,
+      "-"
+    ],
+    [
+      0.342373,
+      "l"
+    ],
+    [
+      0.087379,
+      "\r\n"
+    ],
+    [
+      0.022269,
+      "total 60K\r\n"
+    ],
+    [
+      0.002049,
+      "-rw-rw-r--+ 1 garyhodgson None    0 May 11 21:36 demo.json\r\ndrwxrwx---+ 1 garyhodgson None    0 Apr 11 22:02 \u001b[0m\u001b[01;34mfonts\u001b[0m/\r\ndrwxrwx---+ 1 garyhodgson None    0 Apr 11 22:02 \u001b[01;34mjs\u001b[0m/\r\n-rwxrwx---+ 1 garyhodgson None  738 Apr 11 21:54 \u001b[01;32m"
+    ],
+    [
+      0.002277,
+      "LICENSE\u001b[0m*\r\ndrwxrwx---+ 1 garyhodgson None    0 Apr 11 22:02 \u001b[01;34mresearch\u001b[0m/\r\n-rwxrwx---+ 1 garyhodgson None 5.2K Apr 11 22:03 \u001b[01;32mtest.html\u001b[0m*\r\n-rwxrwx---+ 1 garyhodgson None 2.1K Apr 11 21:56 \u001b[01;32mttyrecord\u001b[0m*\r\ndrwxrwx---+ 1 garyhodgso"
+    ],
+    [
+      0.000849,
+      "n None    0 Apr 11 22:02 \u001b[01;34mutils\u001b[0m/\r\n"
+    ],
+    [
+      0.07971,
+      "\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ "
+    ],
+    [
+      3.508275,
+      "m"
+    ],
+    [
+      0.061541,
+      "o"
+    ],
+    [
+      0.42193,
+      "\r\nmobsync.exe   mode.com      mofcomp.exe   more.com      more.exe      mount.exe     mountmgr.mof  mountvol.exe  \r\n\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ mo"
+    ],
+    [
+      0.350756,
+      "\r\nmobsync.exe   mode.com      mofcomp.exe   more.com      more.exe      mount.exe     mountmgr.mof  mountvol.exe  \r\n\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ mo"
+    ],
+    [
+      2.201989,
+      "\b\u001b[K"
+    ],
+    [
+      0.141007,
+      "\b\u001b[K"
+    ],
+    [
+      0.285502,
+      "c"
+    ],
+    [
+      0.114316,
+      "o"
+    ],
+    [
+      0.487207,
+      "\r\ncob-au.rs                  ColorPrompt.cmd            command                    CompatTelRunner.exe        CompMgmtLauncher.exe       ConEmu_Tilde.xml           config6                    control.exe                \r\ncofire.exe                 colrm.exe"
+    ],
+    [
+      0.000344,
+      "                  Command Processor Off.reg  compgen                    compopt                    ConEmu64.exe               conhost.exe                conv.exe                   \r\ncol.exe                    column.exe                 Command Processor.re"
+    ],
+    [
+      0.000621,
+      "g      compile_et                 ComputerDefaults.exe       ConEmuC.exe                consent.exe                convert.exe                \r\ncolcrt.exe                 comexp.msc                 comp.exe                   complete                   coms"
+    ],
+    [
+      0.000502,
+      "etup.log               ConEmuC64.exe              ContainerUpdater.exe       coproc                     \r\ncolorcpl.exe               comm.exe                   compact.exe                compmgmt.msc               ConEmu_Sample.xml          ConEmuUpdate.in"
+    ],
+    [
+      0.001507,
+      "fo          continue                   corelist                   \r\n\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ co"
+    ],
+    [
+      0.223414,
+      "\r\ncob-au.rs                  ColorPrompt.cmd            command                    CompatTelRunner.exe        CompMgmtLauncher.exe       ConEmu_Tilde.xml           config6                    control.exe                \r\ncofire.exe                 colrm.exe"
+    ],
+    [
+      0.000412,
+      "                  Command Processor Off.reg  compgen                    compopt                    ConEmu64.exe               conhost.exe                conv.exe                   \r\ncol.exe                    column.exe                 Command Processor.re"
+    ],
+    [
+      0.000341,
+      "g      compile_et                 ComputerDefaults.exe       ConEmuC.exe                consent.exe                convert.exe                \r\ncolcrt.exe                 comexp.msc                 comp.exe                   complete                   coms"
+    ],
+    [
+      0.000336,
+      "etup.log               ConEmuC64.exe              ContainerUpdater.exe       coproc                     \r\ncolorcpl.exe               comm.exe                   compact.exe                compmgmt.msc               ConEmu_Sample.xml          ConEmuUpdate.in"
+    ],
+    [
+      0.001415,
+      "fo          continue                   corelist                   \r\n\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ co"
+    ],
+    [
+      0.949558,
+      "w"
+    ],
+    [
+      1.130784,
+      "\b\u001b[K"
+    ],
+    [
+      0.153747,
+      "\b\u001b[K"
+    ],
+    [
+      0.194301,
+      "\b\u001b[K"
+    ],
+    [
+      2.4557,
+      "t"
+    ],
+    [
+      0.083436,
+      "o"
+    ],
+    [
+      0.047741,
+      "p"
+    ],
+    [
+      0.1306,
+      " "
+    ],
+    [
+      0.419604,
+      "-"
+    ],
+    [
+      0.217505,
+      "c"
+    ],
+    [
+      0.092164,
+      "\r\n"
+    ],
+    [
+      0.014679,
+      "bash: top: command not found\r\n"
+    ],
+    [
+      0.079532,
+      "\r\r\n\u001b[0;37;45;1m \u001b[0m \u001b[32mgaryhodgson@garyhodgson-PC \u001b[33m~/www/jsttyplay\u001b[0m\r\r\n$ "
+    ]
+  ]
+}

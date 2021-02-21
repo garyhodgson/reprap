@@ -1,0 +1,85 @@
+---
+layout: post
+status: publish
+published: true
+title: Experimental Off-Carriage X-Axis
+
+
+
+date: '2011-09-27 23:13:41 +0200'
+date_gmt: '2011-09-27 22:13:41 +0200'
+categories:
+- Transmission
+tags: []
+comments:
+- id: 670
+  author: whosawhatsis?
+
+  author_url: http://whosawhatsis.com
+  date: '2011-09-27 23:29:28 +0200'
+  date_gmt: '2011-09-27 22:29:28 +0200'
+  content: "Very interesting! It might work better, though, on a machine with a Darwin-style
+    X/Y axis, so that it could take weight off of a fast-moving axis instead of the
+    slow-moving Z-axis. I'm designing a bot of this type and I'll add this to the
+    list of mechanisms I'll consider to get the X motor off the Y axis.\r\n\r\nOTOH,
+    if you also used a bowden extruder to take the extruder motor weight off of the
+    Z-axis, this should make that axis light enough to use a belt drive instead of
+    leadscrews and make it just as fast as the other axes. Not sure why you'd need
+    that since the Z axis only needs to move in small, infrequent steps during a build,
+    but it would be a cool capability."
+---
+<p>I recently had an idea about moving the X axis motor off the X carriage. I suspect there is little benefit of doing this, but I felt I had to at least knock out a quick prototype to see it in action.<br />
+<a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04658.jpg"><img class="aligncenter size-medium wp-image-781" title="20110927-DSC04658" src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04658-225x300.jpg" alt="" width="225" height="300" /></a></p>
+<p>The video below actually details it all quite well, but i'll also add a few pictures and a description below.</p>
+<p><iframe width="480" height="360" src="http://www.youtube.com/embed/HHwNIaxKdNE" frameborder="0" allowfullscreen></iframe></p>
+<p>So, the idea is to move the X motor off the carriage. One immediate benefit is that the size of the entire X axis is no longer constrained by the size of the motor, perhaps leading to more compact designs? &nbsp;It would be interesting to try out a vertical X axis design with this setup.</p>
+<p>Anyway, the X motion is&nbsp;transferred to the belt via a square extrusion rod which drives a cog which sits directly on it. &nbsp;This rod slides through the mount and cog during Z motion. &nbsp;The belt in this design is within the two X smooth rods, but other layouts could be adapted to move the belt to the outside (as with &nbsp;the original Huxley I believe). &nbsp;In this design the hot-end would either have to fit through the belts, or hang over the edge of the rods. &nbsp;Again, here the vertical layout would be interesting.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04660.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04660-225x300.jpg" alt="Detail of the drive cog mount"/>
+  </a>
+  <p><small>Detail of the drive cog mount</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04663.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04663-300x225.jpg" alt="Detail of the idler"/>
+  </a>
+  <p><small>Detail of the idler</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04664.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04664-160x300.jpg" alt="A temporary text X carriage"/>
+  </a>
+  <p><small>A temporary text X carriage</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04665.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04665-170x300.jpg" alt="View from drive end"/>
+  </a>
+  <p><small>View from drive end</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04667.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04667-225x300.jpg" alt="Detail of drive cog"/>
+  </a>
+  <p><small>Detail of drive cog</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04669.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04669-260x300.jpg" alt="The test rig - bamboo, duct tape and spare parts"/>
+  </a>
+  <p><small>The test rig - bamboo, duct tape and spare parts</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04654.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04654-300x252.jpg" alt="X Drive Cog Mount"/>
+  </a>
+  <p><small>X Drive Cog Mount</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04658.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/09/20110927-DSC04658-225x300.jpg" alt="The drive rod must be parallel to the Z rods"/>
+  </a>
+  <p><small>The drive rod must be parallel to the Z rods</small></p>
+</p>

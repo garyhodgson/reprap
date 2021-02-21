@@ -1,0 +1,131 @@
+---
+layout: post
+status: publish
+published: true
+title: DLP Progress Report
+
+
+
+date: '2012-07-11 00:04:48 +0200'
+date_gmt: '2012-07-10 23:04:48 +0200'
+categories:
+- DLP Resin Printer
+tags: []
+comments:
+- id: 5172
+  author: Mike Joyce
+
+  author_url: http://www.b9creator.com
+  date: '2012-07-11 06:48:35 +0200'
+  date_gmt: '2012-07-11 05:48:35 +0200'
+  content: Nice work Gary!  I think adding pigment will really help control your layer
+    thickness and horizontal  "cure bleed" issues.
+- id: 6472
+  author: Nick Harper
+
+  author_url: ''
+  date: '2012-09-18 07:42:34 +0200'
+  date_gmt: '2012-09-18 06:42:34 +0200'
+  content: You talk about a 50 Deg temperature rise in the resin when exposed. I don't
+    know much about these resins but I do have some experience of DLP projectors.
+    They throw a lot of heat out of the lense. When you removed the colour wheel,
+    you may have also removed the IR filter. If this is the case, I'd also worry about
+    your DLP chip which is now being exposed to the full IR inferno of your lamp.
+- id: 6475
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-09-18 10:53:40 +0200'
+  date_gmt: '2012-09-18 09:53:40 +0200'
+  content: 'Hi Nick, The projector is unmodified, I didn''t remove the colour wheel
+    nor any filters, and as I said in the <a href="http://garyhodgson.com/reprap/2012/06/dlp-resin-printer/"
+    rel="nofollow">original post</a>: I performed the temperature change test in sunlight,
+    rather than with the projector.  Your warning about removing the IR filter is
+    definitely worth bearing in mind for anyone planning on modifying a projector
+    though.'
+- id: 13857
+  author: Fritz
+
+  author_url: ''
+  date: '2012-12-04 22:48:37 +0100'
+  date_gmt: '2012-12-04 21:48:37 +0100'
+  content: "Hi,\r\n\r\ngreat work! Have you got a link for the PTFE foil?\r\n\r\nThanks!"
+- id: 13873
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-12-04 23:42:33 +0100'
+  date_gmt: '2012-12-04 22:42:33 +0100'
+  content: "Hi Fritz.\r\n\r\nThe PTFE foil can be found here: http://uk.rs-online.com/web/p/insulation-films/5363980/\r\nSince
+    this post I ordered some thicker (0.127mm) (and more expensive) foil because the
+    original is quite easily torn (http://uk.rs-online.com/web/p/electrical-chemical-insulating-films/5363996/)\r\n\r\nSadly
+    I have yet to find time to actually try the thicker foil yet."
+- id: 14107
+  author: Fritz
+
+  author_url: ''
+  date: '2012-12-05 14:50:24 +0100'
+  date_gmt: '2012-12-05 13:50:24 +0100'
+  content: Thanks for the reply. RS is alwasy good, easy to get here in Germany :-)
+---
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05253.jpg"><img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05253-300x225.jpg" alt="" title="Failed attempt at Tiny Planetary Gears at 80% scale" width="300" height="225" class="size-medium wp-image-1133" /></a>
+  <p><small>Failed attempt at Tiny Planetary Gears at 80% scale</small></p>
+ </p>
+<p>
+I had hoped to have some nice successful prints to show off but progress has been rather slow. Vat #2 also developed cracks shortly after the initial test runs. Whilst assessing the situation I made the uncomfortable realisation that the "perspex" I had bought was not actual perspex but rather <a href="http://www.ottowolff.com/de/OWOCOR.htm">polystyrene</a>! A project manager from a previous job once dealt me some sage advice: "Assumptions are the mother of all fuck-ups". Here I had assumed that the transparent sheets of plastic at the local hardware store were perspex, because that's what I was looking for and that's all they had, and it certainly looked and responded like perspex. On making this realisation I fell immediately into a second trap - that the cause of the vat failure was due to the material. So I merrily went off and found some real perspex and rebuilt the vat, which promptly failed in <em>exactly the same way</em>!</p>
+
+<p>I recount all of this because I find it interesting how we have to deal with such traps and set-backs as part of the development process. We constantly have to fight against our own hubris, ego, and our willingness to mislead ourselves as we try and maintain focus on solving the current problem, whatever it may be. Robert Pirsig wrote about set-backs and hang-ups, as "Gumption Traps" in Zen and the Art of Motorcycle Maintenance (<a href="http://design.caltech.edu/erik/Misc/pirsig.pdf">PDF</a>, p.139 onwards) and I am reminded of them often as I tinker.</p>
+
+<p>So, after 3 failed vats, I actually started to <em>consider</em> that the design might be the problem. Some rudimentary research on working with acrylic showed quite clearly that it "has a high thermal expansion coefficient&nbsp;compared to traditional glazing materials and allowance within the frames must be made in both directions for thermal expansion and contraction". So the rapid heating of the center from the reaction in the resin, together with the use of bolts through the material, was a recipe for disaster. I had, once again, <em>assumed</em> that my memory of working with perspex (at school, so now a few years ago) was accurate and that it would tolerate such temperature changes and design. It was only after these failed attempts that my hubris was sufficiently dented that I was forced to question my assumptions and check, and double check, my work.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05255.jpg"><img class="size-medium wp-image-1134" title="Vat #4" src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05255-300x260.jpg" alt="" width="300" height="260" /></a>
+  <p><small>Vat #4</small></p>
+</p>
+
+<p>Build #4 removes the bolts and leaves some allowances around the edges for the thermal expansion. It uses aluminium U-bar to "clamp" the PTFE foil between the L-shaped walls and the perspex floor. All held together with a generous amount of silicone. It's still far from perfect, but at least so far it hasn't developed cracks!  The main problem I foresee is that any damage to the foil will mean having to destroy and rebuild the whole thing.</p>
+
+<p>I also built a second base from copper pcb.  So far it seems to hold the parts enough for the duration of the print and they can be easily scraped off afterwards.</p>
+
+<p>
+    <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05221.jpg"><img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05221-300x225.jpg" alt="" title="New vat and base" width="300" height="225" class="size-medium wp-image-1127" /></a>
+    <p><small>New vat and base</small></p>
+</p>
+
+<p>During the times that I did have a vat, I attempted the <a href="http://www.thingiverse.com/thing:23030">Tiny Planetary Gears</a> by Auebenc. I'm still waiting for my pigment to arrive and so am still trying to judge the cure depth of pure resin by timing alone. Because of this I wasn't expecting a working print (which I indeed didn't achieve) but I think the model shows the potential of what the printer will eventually be able to do.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05252.jpg"><img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05252-300x225.jpg" alt="" title="Failed attempt at Tiny Planetary Gears at 50% scale" width="300" height="225" class="size-medium wp-image-1132" /></a>
+  <p><small>Failed attempt at Tiny Planetary Gears at 50% scale, note the M3 nut for scale.</small></p>
+</p>
+
+<p>The above print would have been great however I had reduced the X/Y scale to 50% but failed to reduce the Z layer height, and so it is elongated x2 in the Z direction.  I think I will have to put a reminder message in the host, or do something automatically, as it is all too easy to forget a variable whilst making adjustments such as this.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05236.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05236-300x259.jpg" alt="Sunning the parts as a post-cure"/>
+  </a>
+  <p><small>Sunning the parts as a post-cure</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05224.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05224-300x225.jpg" alt="Fresh from the vat"/>
+  </a>
+  <p><small>Fresh from the vat</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05232.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05232-300x225.jpg" alt="Cleaning with Isopropyl Alcohol"/>
+  </a>
+  <p><small>Cleaning with Isopropyl Alcohol</small></p>
+</p>
+
+<p>Tony Buser asked <a href="https://plus.google.com/u/0/photos/106465579732448802787/albums/5756044628259613681/5756044627727483362">what the durability of printed parts is like</a> and I replied that the belt pulley from the first test run certainly appear to be strong enough to use in that capacity, and these prints remain as strong now. One thing I did discover whilst attempting to clean up some of the planetary gear parts is that the material is very brittle directly after printing, and even after a couple of minutes under a UV lamp. When I tried to enlarge screw holes the resin cracked or crumbled quite easily. However it has to be noted that the models were ridiculously small (I printed at 50% and 80% of the already tiny size), plus I think that allowing the models to cure over time makes them stronger. </p>
+
+<p>
+    <a href="/reprap/assets/images/wp-content/uploads/2012/07/DSC05246.jpg"><img src="/reprap/assets/images/wp-content/uploads/2012/07/DSC05246-300x225.jpg" alt="" title="Brittleness directly after printing" width="300" height="225" class="size-medium wp-image-1131" /></a>
+    <p><small>Brittleness directly after printing</small></p>
+</p>
+
+<p>Another thing worth remembering is that spotamaterials also offers harder, more robust resins - <a href="http://www.spotamaterials.com/Spot-HH.php?lang=en">Spot-HH</a> and <a href="http://www.spotamaterials.com/Spot-HT.php?lang=en">Spot-HT</a>. I will no doubt be trying this sometime soon.</p>

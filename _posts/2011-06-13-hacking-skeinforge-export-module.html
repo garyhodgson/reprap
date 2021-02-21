@@ -1,0 +1,110 @@
+---
+layout: post
+status: publish
+published: true
+title: Hacking Skeinforge Export Module
+
+
+
+date: '2011-06-13 21:47:04 +0200'
+date_gmt: '2011-06-13 20:47:04 +0200'
+categories:
+- Skeinforge
+tags: []
+comments:
+- id: 201
+  author: whosawhatsis?
+
+  author_url: http://whosawhatsis.com
+  date: '2011-06-13 23:03:58 +0200'
+  date_gmt: '2011-06-13 22:03:58 +0200'
+  content: Nice, though I think I'd rather have most of that type of information in
+    comments at the beginning of the file, rather than in the file name.
+- id: 202
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2011-06-14 07:05:02 +0200'
+  date_gmt: '2011-06-14 06:05:02 +0200'
+  content: Good point, I had forgotten that gcode files can have comments in - would
+    be much neater.  The one benefit of having it in the filename is one doesn't have
+    to open the file to see them.
+- id: 257
+  author: Ahmet TURAN
+
+  author_url: http://www.reprapfordummies.net
+  date: '2011-07-05 07:47:14 +0200'
+  date_gmt: '2011-07-05 06:47:14 +0200'
+  content: "Hi,  very nice enhancement.  I love it (though it is cluttering my Folders
+    ATM..\r\nmaybe an option to put them into a seperate folder?.  \r\nIf you are
+    so good with python maybe you can help me to include some automation for the settings?
+    \  As I am no programmer, I can read the python code but I am unable to write
+    someting new... or make slight changes...\r\n\r\nCan you help?   My version of
+    SF:  https://github.com/ahmetcemturan/skeinforge\r\nYour export mdule is also
+    included there.\r\n\r\nThx.   You can email me for further discussion."
+- id: 447
+  author: Ahmet TURAN
+
+  author_url: http://www.reprapfordummies.net
+  date: '2011-07-26 22:51:03 +0200'
+  date_gmt: '2011-07-26 21:51:03 +0200'
+  content: "Well my fork has evolved quite a bit so that it does not need tweaking
+    anymore...\r\nhttps://github.com/ahmetcemturan/SFACT"
+- id: 448
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2011-07-27 08:27:08 +0200'
+  date_gmt: '2011-07-27 07:27:08 +0200'
+  content: That's great Ahmet - sounds like you got to grips with python then.  Simplifying
+    SF is certainly a good idea.
+---
+<p>I decided to add a few features to the export module of Skeinforge which may also be useful to others. &nbsp;I've committed these changes to <a href="https://github.com/garyhodgson/skeinforge">my fork of the (unofficial) git repo</a>. &nbsp;If they seem popular then i'll fire an email to Enrique with a patch.</p>
+<p><img class="aligncenter size-full wp-image-617" title="export_options" src="/reprap/assets/images/wp-content/uploads/2011/06/export_options.png" alt="" width="547" height="606" /></p>
+
+<h2>Add Profile To File Extension</h2>
+
+<p>Simply adds the current profile to the file extension, &nbsp;e.g. <em>test.my_profile_name.gcode.</em></p>
+
+<h2>Archive Used Profile As Zip</h2>
+
+<p>Creates a Zip file archive of the current profile, e.g. <em>test.my_profile_name.zip</em></p>
+
+<h2>Export Profile Values As CSV File</h2>
+
+<p>Creates a Comma Separated Value file containing all profile values, e.g. <em>test.my_profile_name.csv. </em></p>
+
+<p>The format is: plugin,name,value, e.g.&nbsp;<em>carve,Layer Thickness (mm):,0.4</em></p>
+
+<p><em><img class="aligncenter size-full wp-image-641" title="example_csv" src="/reprap/assets/images/wp-content/uploads/2011/06/example_csv.png" alt="" width="640" height="466" /><br />
+</em></p>
+
+<h2>Add Descriptive Extension</h2>
+
+<p>Because I am inconsistent in my profile management I often tweak a setting of a profile before printing. &nbsp;This means the profile name usually does not reflect the actual profile values. &nbsp;This option adds key profile values as&nbsp;an extension to the gcode file. If a module is turned off then the value is not added to the extension.</p>
+
+<p>E.g. <em><filename>.04hx06w_33Ff_03fill.4off.gcode </em>where:</p>
+<ul>
+<li><strong>04h </strong>= "Layer Thickness (mm):" 0.4</li>
+<li>x</li>
+<li><strong>06w </strong>= 0.6 width i.e. 0.4 times "Perimeter Width over Thickness (ratio):" 1.5</li>
+<li>_</li>
+<li><strong>33Ff </strong>= "Flow Rate Setting (float):" 33.0 and "Feed Rate (mm/s):" 33.0. &nbsp;If either value has a positive value after the decimal place then this is also shown, but if it is zero it is hidden. &nbsp;Also, if the values differ (which they shouldn't with 5D volumetrics) then each is displayed seperately, i.e. 30F35.2f = "Flow Rate Setting (float):" 30.0 and "Feed Rate (mm/s):" 35.2</li>
+<li>_</li>
+<li><strong>03fill </strong>= "Infill Solidity (ratio):" 0.3</li>
+<li><strong>4off </strong>= "Number of Columns (integer):" x "Number of Rows (integer):" from the Multiply Tab, e.g. 2x2. &nbsp;If these values are both 1 then this part is not shown.</li>
+</ul>
+<h2>Add Timestamp Extension</h2>
+<p>Adds the current date and time as an extension in format YYYYmmdd_HHMMSS (so it is sortable if one has many files), e.g. <em>test.my_profile_name.20110613_220113.gcode</em></p>
+<hr />
+<p>&nbsp;</p>
+<p><img class="aligncenter size-full wp-image-618" style="border-style: initial; border-color: initial;" title="example_files" src="/reprap/assets/images/wp-content/uploads/2011/06/example_files.png" alt="" width="600" height="67" /></p>
+<p>Using all the options together yields a few files with long names but it means that each time a STL is processed one can:</p>
+<ul>
+<li>see which profile was used (from the filename),</li>
+<li>see which key values were used &nbsp;(from the filename),</li>
+<li>see all the profile values (from the csv),</li>
+<li>recreate the profile (from the zip),</li>
+<li>and ensure sure that all gcode files are unique and not overwritten each time&nbsp;(with timestamp).</li>
+</ul>
+<p>&nbsp;</p>

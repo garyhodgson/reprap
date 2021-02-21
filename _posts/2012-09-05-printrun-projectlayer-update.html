@@ -1,0 +1,48 @@
+---
+layout: post
+status: publish
+published: true
+title: Printrun Projectlayer Update
+
+
+
+date: '2012-09-05 15:46:42 +0200'
+date_gmt: '2012-09-05 14:46:42 +0200'
+categories:
+- DLP Resin Printer
+tags: []
+comments: []
+---
+<p>I recently updated my mod of <a href="https://github.com/garyhodgson/Printrun/tree/experimental">Printrun's projectlayer</a> with a couple of important improvements which are worth sharing.</p>
+<ul>
+<li><strong>Replaced wxpsvg with cairosvg.<br />
+</strong>Wxpsvg didn't handle scaling correctly and so I decided to replace it with the better <a href="http://www.cairosvg.org">cairosvg</a> module. <strong>This means there is a new dependency on <a href="http://cairographics.org/pycairo">pycairo</a></strong> (I installed via:&nbsp;<em>pip install pycairo</em>). &nbsp;Now each model should project to the correct size when the X and Y resolution, and the ProjectedX, values are set correctly, and the scale is set to 1. &nbsp;See below for a brief outline of my XY calibration technique.</li>
+<li><strong>Slow SVG reading caused timing issues.<br />
+</strong>When the SVG file is large (e.g. > ~5MB) the time it took to convert to bitmap caused the image to not be displayed in time, as the original code worked on a fixed time schedule. I changed it slightly so that the displaying of the image waits for the bitmap to be ready before continuing. This means that the "Blank" time is now really the minimum blank time - it could blank longer if the SVG takes a while to convert, but at least the amount of time exposed should be always correct.</li>
+<li><strong>Projectlayer settings are now saved between sessions.</strong></li>
+<li><strong>Show filename, layer count and estimated time for print.</strong></li>
+<li><strong>First layer can be displayed for a set number of seconds.<br />
+</strong>Setting a positive value in the number box next to the "1st Layer" checkbox will immediately display the first layer for that number of seconds. Useful for testing or for exposing the first layer for longer before starting the print. &nbsp;A value of -1 sets it to infinity.</li>
+</ul>
+<div></div>
+<div></div>
+<h2>XY Calibration</h2>
+<p>It may also be worth mentioning how I calibrate the XY dimension of the printer. &nbsp;There may be better ways, but the following works for me.</p>
+<div>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/09/screenshot_2012-09-05_161431.png"><img class=" wp-image-1147  " title="Projectlayer - Calibration" src="/reprap/assets/images/wp-content/uploads/2012/09/screenshot_2012-09-05_161431.png" alt="Projectlayer - Calibration" width="585" height="320" /></a>
+  <p><small>Projectlayer - Calibration</small></p>
+</p>
+</div>
+<div></div>
+
+<div>The key settings are the <strong>X</strong> and&nbsp;<strong>Y&nbsp;</strong>resolution (in pixels), plus the&nbsp;<strong>ProjectedX&nbsp;</strong>value (in mm). &nbsp;The former should be set to the resolution of the projector (in my case 1024x768), and the latter to the full width of the image that is projected onto the bottom of the vat - not just what is visible <em>in</em> the vat of course, but the entire width of the projection. &nbsp;(I should also note that the display should of course be set to "fullscreen"). &nbsp;With these figures dialled in the calibrate checkbox should display a grid of 10mm&sup2; squares. &nbsp;The ProjectedX parameter can be modified to fine tune.</div>
+
+<p>&nbsp;</p>
+
+<div>It's also worth testing with a few real models to make sure - the "1st layer" option is useful here.</div>
+
+<p>&nbsp;</p>
+
+<div>If anyone uses this and comes across problems then please let me know.</div>

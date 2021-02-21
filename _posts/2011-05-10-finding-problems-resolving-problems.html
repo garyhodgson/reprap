@@ -1,0 +1,86 @@
+---
+layout: post
+status: publish
+published: true
+title: Finding Problems, Resolving Problems
+
+
+
+date: '2011-05-10 23:37:53 +0200'
+date_gmt: '2011-05-10 22:37:53 +0200'
+categories:
+- Printing
+tags: []
+comments:
+- id: 164
+  author: Phil
+
+  author_url: ''
+  date: '2011-05-22 11:18:58 +0200'
+  date_gmt: '2011-05-22 10:18:58 +0200'
+  content: I find your site very helpful. Special thanks for visual instructions on
+    Wade's extruder. I am building Prusa too but having problems with electronics.
+    Btw how much did all of the electronic parts cost you?
+- id: 165
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2011-05-22 21:46:22 +0200'
+  date_gmt: '2011-05-22 20:46:22 +0200'
+  content: "Hi,  I'm glad that the guides are helpful! Thanks for letting me know.\r\n\r\nFor
+    the electronics I bought a Ramps v1.2 kit together with a Arduino mega 2560 from
+    <a href=\"http://www.reprapsource.com\" rel=\"nofollow\">reprapsource</a>.  This
+    came to &euro;94 including shipping and tax.  Then I got the Pololu stepper motor
+    drivers from <a href=\"https://shop.grrf.de/pololu-a4983-schrittmotortreiber-p-297.html?zenid=1d819e7cffaaab774373375f6e8d9478\"
+    rel=\"nofollow\">grrf.de</a> which cost &euro;40. The 5 stepper motors were ~&euro;55
+    from <a href=\"http://www.slidesandballscrews.com/stepper-motors-nema-stepper-motors-c-45_80.html\"
+    rel=\"nofollow\">Zapp Automation</a>.  So all in all these parts cost about &euro;200
+    - perhaps a bit more including delivery.\r\n\r\nHope that helps."
+- id: 3330
+  author: 'Printing reprap pulleys : brelovich'
+
+  author_url: http://brelovich.com/2012/04/printing-reprap-pulleys/
+  date: '2012-04-04 18:49:44 +0200'
+  date_gmt: '2012-04-04 17:49:44 +0200'
+  content: "[...] pulleys would come out with one tooth missing or severely malformed.
+    That is until I read about the Cool settings in Skeinforge. It turns out, if you
+    activate cool, set a minimum time of 30 seconds or so per layer [...]"
+- id: 80231
+  author: Manicarus
+
+  author_url: http://manicarus.egloos.com/
+  date: '2014-07-16 04:23:48 +0200'
+  date_gmt: '2014-07-16 03:23:48 +0200'
+  content: "Your troubleshooting was very helpful!\r\nI managed to solve my problem
+    after reading your article.\r\nBecause of my loose y-axis belt, my circle was
+    really ugly.\r\nBut after reading this, circle comes out really pretty!! :) thanks!!!"
+---
+<p>An eventful few days, largely dealing with wear and tear maintenance issues.</p>
+<h2>X End Idler Split</h2>
+<p><a rel="attachment wp-att-537" href="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04275.jpg"><img class="aligncenter size-medium wp-image-537" title="20110505-DSC04275" src="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04275-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+<p>It seems that whilst using lubricant on the Z axis rods was a reasonable idea it soaked into the X End Idler and caused weakness between layers (I believe).  This in turn resulted in a slight split and the head of the hot end ploughing through the last few layers of a print.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04279.jpg" rel="attachment wp-att-538"><img src="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04279-300x225.jpg" alt="" title="20110505-DSC04279" width="300" height="225" class="aligncenter size-medium wp-image-538" /></a>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04280.jpg" rel="attachment wp-att-539"><img src="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04280-300x225.jpg" alt="" title="20110505-DSC04280" width="300" height="225" class="aligncenter size-medium wp-image-539" /></a>
+</p>
+
+<p>Attempting to realign the print (of a gear) seemed to work fine, but closer inspection shows it was pretty skewed and is not usable as it stands.</p>
+
+<p><a rel="attachment wp-att-540" href="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04283.jpg"><img class="aligncenter size-medium wp-image-540" title="20110505-DSC04283" src="/reprap/assets/images/wp-content/uploads/2011/05/20110505-DSC04283-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+<p>Luckily the split didn't grow, or affect subsequent prints, so I could print out it's replacement.</p>
+
+<h2>Perfecting the Pulley</h2>
+
+<p>So my circles were coming out oval and I still hadn't printed the perfect pulley. &nbsp;Suspecting that a replacement pulley with a dent in the teeth was the cause of the oval problem I brought the original out of retirement with a quick hack. &nbsp;This allowed me to print a few pulleys, and this time I achieved pulley nirvana. &nbsp;The secret? Cool in Skeinforge. &nbsp;It seems obvious now, but my previous attempts to utilise the cool module didn't work because I was using "orbit". Changing this to "slow down" meant that the spurs and teeth were laid down much slower, and hence with much less deformities!</p>
+
+<p><a rel="attachment wp-att-541" href="/reprap/assets/images/wp-content/uploads/2011/05/20110508-DSC04286.jpg"><img class="aligncenter size-medium wp-image-541" title="20110508-DSC04286" src="/reprap/assets/images/wp-content/uploads/2011/05/20110508-DSC04286-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+<h2>Loose X Belt</h2>
+
+<p>Having more faith in the X pulley I was expecting perfect(ish) circles, but no joy. &nbsp;A bit more observation made me realise that the X belt was wobbling quite a bit at the apex of each turn. I had thought the belt was tight enough, but it seems it was not - and tightening it so it "twangs" when tapped results in much better circles.</p>
+
+<p><a rel="attachment wp-att-542" href="/reprap/assets/images/wp-content/uploads/2011/05/20110510-DSC04292.jpg"><img class="aligncenter size-medium wp-image-542" title="20110510-DSC04292" src="/reprap/assets/images/wp-content/uploads/2011/05/20110510-DSC04292-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p>&nbsp;</p>

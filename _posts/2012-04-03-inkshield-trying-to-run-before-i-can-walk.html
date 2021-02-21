@@ -1,0 +1,59 @@
+---
+layout: post
+status: publish
+published: true
+title: Inkshield - Trying to run before I can walk
+
+
+
+date: '2012-04-03 22:23:57 +0200'
+date_gmt: '2012-04-03 21:23:57 +0200'
+categories:
+- Uncategorized
+tags:
+- Inkshield
+- RAMPS
+- Adderfab
+comments:
+- id: 3326
+  author: unfold
+
+  author_url: http://www.unfold.be
+  date: '2012-04-04 08:27:46 +0200'
+  date_gmt: '2012-04-04 07:27:46 +0200'
+  content: cool, suddenly the rewrap community seems to aim its guns at the whole
+    range of 3d printing methods! keep up the good work
+- id: 3327
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-04-04 09:40:46 +0200'
+  date_gmt: '2012-04-04 08:40:46 +0200'
+  content: "Yeah, I'm hoping that with more and more people getting involved a portion
+    of them will take interest in exploring new developments.  \n\nCoincidentally,
+    \ I have also been following your progress at Unfold with interest and am also
+    building paste extruders - that'll be another post sometime.  Perhaps I'm trying
+    to do too many things at once, but it sure is fun exploring!"
+- id: 3375
+  author: Florian Horsch
+
+  author_url: http://www.techwall.net
+  date: '2012-04-09 11:39:55 +0200'
+  date_gmt: '2012-04-09 10:39:55 +0200'
+  content: Very nice stuff! I saw that you worked on the Inkshield on Google+. Really
+    happy to see that it was related to 3d printing ;)
+---
+<p>Recently I found myself with the time to finally build the <a href="http://nicholasclewis.com/projects/inkshield/">Inkshield </a>I bought last year. My (rough) goal is to recreate the <a href="http://open3dp.me.washington.edu/2011/03/a-new-species-is-born-adderfab/">Adderfab </a>work of the Open3DP team and perhaps put together a powder bed printer. At the very least the Inkshield is a cool little gadget to put together, and Nicholas Lewis has done a good job in creating the kit.</p>
+<p><a href="/reprap/assets/images/wp-content/uploads/2012/04/DSC05031.jpg" rel="attachment wp-att-1024"><img class="aligncenter size-medium wp-image-1025" title="Inkshield" src="/reprap/assets/images/wp-content/uploads/2012/04/DSC05031-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p>Rather than directly use the <a href="http://www.thingiverse.com/thing:8542">Adderfab firmware and code</a> I decided to try and drive the Inkshield from Ramps, with a modified Sprinter firmware and Pronterface. This is perhaps a bit overkill to start with, but this setup has the advantage of being ready to drive all the axis, plus using G and M-codes to control everything.</p>
+<p>I got to the point of recreating a dot-matrix printer, and along the way discovered a few things:</p>
+<p><a href="/reprap/assets/images/wp-content/uploads/2012/04/DSC05042-001.jpg" rel="attachment wp-att-1024"><img class="aligncenter size-medium wp-image-1024" title="Recreating the Dot-matrix" src="/reprap/assets/images/wp-content/uploads/2012/04/DSC05042-001-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<ul>
+<li>The Inkjet cartridge is very sensitive, and the thermal heaters can burn out very easily when subjected to too long pulses, which sadly can happen when simply uploading new firmware. Nicholas' instructions warn to take out the cartridge whilst doing this but I seemed to have forgotten once or twice and now I have a dead printhead... annoying!</li>
+<li>The Inkshield isn't terribly suited for stacking with RAMPS as the latter has to go on top due to the stepper drivers, and the former has the ribbon cable leading to the cartridge holder directly over the digital header pins. &nbsp;The photo below shows the Inkshield next to an Arduino Mega with the Ramps in the background - note the ribbon cable on the right hand side.<br />
+<a href="/reprap/assets/images/wp-content/uploads/2012/04/DSC05035-001.jpg" rel="attachment wp-att-1030"><img class="aligncenter size-medium wp-image-1030" title="Inkshield, Arduino, Ramps" src="/reprap/assets/images/wp-content/uploads/2012/04/DSC05035-001-300x234.jpg" alt="" width="300" height="234" /></a></li>
+<li>To get around the stacking problem I plugged the Inkshield in a spare Arduino Duemilanove and linked them over a Soft Serial port (fully accepting any subsequent syncing issues just to get some results). This largely worked, and I was able to get a nice row of dots by having the Ramps tell the Inkshield to print every 80 steps (1 mm). I then pushed my luck by printing after every step, which may have overloaded the Inkshield causing too many pulses and subsequently burning out the nozzles. The Inkshield Arduino Library has a 800us delay built into the command, which I expected to "save" the nozzles, but it may be the case that bombarding the Inkshield with a command to print every step caused the commands to overlap, and hence burnout - I still need to think a bit more about what might have happened.</li>
+<li>My attempt to buffer the bitmap image data in the Arduino quickly introduced me to world of embedded systems and limited RAM! My naive approach of using hex representation of the data directly in gcode seemed a reasonable starting point, but even the 2k this represented results in headaches. Obviously this could be reduced dramatically, but it made me stop and think about how best to represent the data. The original Adderfab gets around this by using an SD card and reading each set of nozzle data directly.</li>
+</ul>
+<div><a href="/reprap/assets/images/wp-content/uploads/2012/04/DSC05044-001.jpg" rel="attachment wp-att-1023"><img class="aligncenter size-medium wp-image-1023" title="Inkshield, Ramps and the testbed Huxley Roxrap" src="/reprap/assets/images/wp-content/uploads/2012/04/DSC05044-001-300x225.jpg" alt="" width="300" height="225" /></a></div>
+<p>So, after such fun and games I ordered some replacement C6602A cartridges (not a cheap way to debug!) and will probably go back to basics using the Adderfab code as a baseline and building a simpler setup. Once I have that working I will then revisit integration with Ramps etc.</p>

@@ -1,0 +1,163 @@
+---
+layout: post
+status: publish
+published: true
+title: Experimental Z Axis Gear Train
+
+
+
+date: '2011-10-07 23:59:52 +0200'
+date_gmt: '2011-10-07 22:59:52 +0200'
+categories:
+- Transmission
+- Experiment
+tags: []
+comments:
+- id: 730
+  author: Dale Dunn
+
+  author_url: ''
+  date: '2011-10-08 03:41:25 +0200'
+  date_gmt: '2011-10-08 02:41:25 +0200'
+  content: "Gary,\r\n\r\nThat's a fun and interesting idea. I like it.\r\n\r\nOne
+    way to completely eliminate backlash that you didn't list is to use <a href=\"http://www.kxcad.net/RecurDyn/RecurDyn_Ver6.3/programmanual/Gear/Geometries_Entities/Scissors_Gear/Scissors_Gear.htm\"
+    rel=\"nofollow\">scissor gears</a>. These are most commonly  (I think) used in
+    engine valve train systems to eliminate backlash. They're still efficient, and
+    not much harder to build. You wouldn't have to tune the prints to perfection.
+    They do require some springs, but I think a suitable printed spring shouldn't
+    be too hard to come up with."
+- id: 732
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2011-10-08 10:12:31 +0200'
+  date_gmt: '2011-10-08 09:12:31 +0200'
+  content: "Hi Dale, \n\nThanks for the comment - it makes me realise that writing
+    the post was worth it because I might not have come across scissor gears otherwise.
+    \ After some more browsing I also found the following site which gives a good
+    description (with diagrams) of how they work: http://www.brighthub.com/engineering/mechanical/articles/65169.aspx
+    \ (I believe they are talking about the same thing).\n\nIf I get time I will have
+    a go at printing some out and post the results.  It would definitely be interesting
+    if the springs could be printed too!"
+- id: 733
+  author: anon
+
+  author_url: ''
+  date: '2011-10-08 13:18:23 +0200'
+  date_gmt: '2011-10-08 12:18:23 +0200'
+  content: "the backlash of gears system composed of identical wheals is b*(2^(n-1))
+    where b is the backlash between two gears and n is the number of gears.\r\n\r\nThis
+    is very visible in toy cars plastic gear boxes.\r\n\r\nSo one way to reduce backlash
+    is to reduce the number of gears: in your case put a 45 degrees beveled gear on
+    the z rods and connect them with a row having two other 45 degrees gears and drive
+    this rod directly with the stepper motor.\r\n\r\nthen improve the quality of your
+    gears shape. but this has a limit as backlash is necessary in order to avoid the
+    gear jamming.\r\n\r\nThen increase the stiffness of your setup.\r\n\r\nThen try
+    to implement designs to compensate for the remaining backlash. like the scissor
+    gears."
+- id: 745
+  author: Dale Dunn
+
+  author_url: ''
+  date: '2011-10-09 14:16:43 +0200'
+  date_gmt: '2011-10-09 13:16:43 +0200'
+  content: There hasn't been a lot done in the RepRap community with printed springs,
+    but there is precedent. I think the original Mendel design had printed springs
+    under the print bed. I've used the elasticity of ABS in a spring-like component
+    too. A spring doesn't have to be a coil, so I'm sure you could imagine something.
+- id: 770
+  author: Martin Price
+
+  author_url: http://www.HeliumFrog.com
+  date: '2011-10-14 12:50:48 +0200'
+  date_gmt: '2011-10-14 11:50:48 +0200'
+  content: Yes a horizontal rod with two bevel gears would be a better solution. In
+    addition , the weight of the x carriage on the gears would reduce the backlash
+    on a bevel to acceptable levels.
+- id: 75842
+  author: Rudi
+
+  author_url: ''
+  date: '2014-03-20 13:44:37 +0100'
+  date_gmt: '2014-03-20 12:44:37 +0100'
+  content: This is quite an interesting approach. Have you researched this further?
+    If so, would you mind sharing your findings?
+- id: 79765
+  author: Thierry C.
+
+  author_url: ''
+  date: '2014-07-09 07:01:22 +0200'
+  date_gmt: '2014-07-09 06:01:22 +0200'
+  content: "I worked on this solution since January 2013 but I hesitated to publish
+    it since I had no opportunity to test it first on an already working Prusa 2 (my
+    own one contains a similar mechanism built with scavenged and bought gears but
+    I never dared to take it down since it works) and nobody else seemed interested
+    or seriously motivated by this solution.\r\nNevertheless I recently mounted my
+    kit on a Prusa 2 frame from a friend and it seems mechanically smooth after adjusting
+    the gears' backlash.\r\nAn older version (gears' cages redesigned for easier mounting
+    and crank added since) can be found on his website : <a href=\"http://usinette.org/atelier/catalogue-d-objets/article/two-z-axis-motors-is-too-much-kit\"
+    rel=\"nofollow\"> but the mounting instructions are still missing. Just pay attention
+    that the Z threaded rods need to be a bit longer since they are directly bound
+    ot the bevel gears with no intermediate coupler.\r\n\r\nLet me know if still interested
+    and I'll publish the latest version with mounting instructions... and even the
+    OpenSCAD (not ideally well written) source code."
+- id: 79766
+  author: Thierry C.
+
+  author_url: ''
+  date: '2014-07-09 07:04:05 +0200'
+  date_gmt: '2014-07-09 06:04:05 +0200'
+  content: "Oops, HTML syntax error and impossibility to correct my post.\r\n<a href=\"http://usinette.org/atelier/catalogue-d-objets/article/two-z-axis-motors-is-too-much-kit\"
+    rel=\"nofollow\">Two Z-axis motors are too much !</a>"
+- id: 84878
+  author: zhivko
+
+  author_url: ''
+  date: '2014-09-26 13:30:41 +0200'
+  date_gmt: '2014-09-26 12:30:41 +0200'
+  content: What is suggested backlash for 3d printed gears?
+---
+
+<p>I was thinking about alternative ways of driving the second Z axis rod. Using two motors seems a bit redundant, and timing belts have to be the right size and can be tricky to source. This isn't much of a problem for most people wanting a 3D printer - but if you're experimenting with the technology then having something more 'reprapable' has it's advantages.</p>
+
+<p>One way would be to use a gear train between the rods. This seemed like an interesting line to pursue, as it gave me an excuse to learn how to design gears, and what's the point of having a printer if you can't play a little. So, firing up Openscad and the excellent "<a href="http://www.thingiverse.com/thing:3575" target="_blank">Parametric Involute Bevel and Spur Gears</a>" script from Greg Frost, I worked out how to build a set of gears to connect the rods on my test rig. I also put together a <a href="
+https://tinkercad.com/p/acc073f8367c731a/108" target="_blank">basic frame</a> to hold them in place using Tinkercad (which coincidentally tested how big a part my Prusa can actually print).</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04680.jpg"><img class="size-medium wp-image-794" title="Gear train mounted on top" src="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04680-225x300.jpg" alt="" width="225" height="300" /></a>
+<p><small>Gear train mounted on top</small></p>
+</p>
+
+<p>Having the gears in this curve was not actually planned to be honest (my calculations were a little off), but it did show a way in which access to extruder could be possible if they were mounted on the top of the machine - assuming some sort of guard around the gear mechanism.</p>
+
+<p>Testing showed immediately a clear problem with this approach - backlash. The poor tolerances between the gear teeth accumulates along the train resulting in a noticable delay between the start of the driver gear and the start of the final driven gear when the direction of movement is changed. This is nicely shown in the video.</p>
+
+<p><iframe width="480" height="360" src="http://www.youtube.com/embed/FWbIhJRY05I" frameborder="0" allowfullscreen></iframe></p>
+
+<p>There's a few things to note:</p>
+<ul>
+<li>The problem only occurs when changing direction which, on the Z axis, does not happen for the duration of a print <em>except</em>&nbsp;at the very start after the axis has gone to home.</li>
+<li>This could potentially be mitigated by going to home and then priming the gears by moving in the opposite direction for a very small distance. I imagine this would be difficult to do with precise.</li>
+<li>Another idea is to move the driving motor to the middle gear. This would mean that each end would turn at approximately the same time, but there would be still some play between the driving and driven gears.</li>
+<li>Increasing the tolerances of the gears would also reduce the backlash. However this depends on the quality of prints, and also how high a quality can be hoped for in printed plastic parts.</li>
+</ul>
+
+<p>The backlash problem seems horribly obvious with hindsight. Perhaps I could have worked it out from a bit more thinking, or from a bit of googling or asking on the forums, but by being able to quickly build a prototype I got to learn about making gears and think more about the problem than I would from just reading about it. And maybe posting this will help others in some way. The joys of 3D printing!</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04691.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04691-225x300.jpg" alt="Gear train mounted underneath"/>
+  </a>
+  <p><small>Gear train mounted underneath</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04680.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04680-225x300.jpg" alt="Gear train mounted on top"/>
+  </a>
+  <p><small>Gear train mounted on top</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04682.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2011/10/20111002-DSC04682-225x300.jpg" alt="Alternate view from above"/>
+  </a>
+  <p><small>Alternate view from above</small></p>
+</p>

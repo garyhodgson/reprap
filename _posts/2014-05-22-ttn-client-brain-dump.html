@@ -1,0 +1,48 @@
+---
+layout: post
+status: publish
+published: true
+title: TTN Client - Brain Dump
+
+
+
+date: '2014-05-22 21:31:15 +0200'
+date_gmt: '2014-05-22 20:31:15 +0200'
+categories:
+- Thing Tracker Network
+tags: []
+comments: []
+---
+<p>A post by <a href="https://plus.google.com/u/0/+JasonGullickson/posts/7N56wz5cuqW">Jason Gullickson</a>&nbsp;has prompted a long overdue status report/brain dump on TTN. Since the last update very little has happened and so I want to go over why that is, and also play around with some ideas of how to get going again.</p>
+<p>Getting the <a href="https://github.com/garyhodgson/thing-tracker-network-client/tree/dev">TTN Client</a>&nbsp;to beta quality (or even alpha-alpha quality) has proven to be a bit more of a challenge than I expected. Finding the time, and motivation, to tackle some of the challenges, on top of work and family commitments, has been hard.</p>
+<p>A challenge I mentioned in my last post was how to reconcile having a distributed model where many of the participants may be off-line for a majority of the time? This led me develop a file-based model for the client which could be also used as a static website - allowing it to be transferred to an arbitrary hosting provider. This leads to the question: how to handle multiple revisions of a particular design? So as not to have to transfer and host copious amounts of data. This led me to investigate using a git-based model, which would have the benefit of integrating easier with Github, but sadly the state of Javascript git libraries is such that this is not a trivial thing to implement.</p>
+<p>Another challenge is to handle gracefully the synchronisation and caching of information between TTN nodes. Another is how to secure the network, or at least provide safeguards against malicious nodes and and actors. Another is how to provide search capabilities... and so the list grows.</p>
+<p>The client currently allows the following:</p>
+<ul>
+<li>When starting the first time the client creates a set of keys and connects to the DHT via predefined bootstrap nodes.</li>
+<li>Multiple Trackers can be created and Things added to them. Basic metadata can be defined which follows the TTN Specification. The metadata can be edited, but the screens have no CSS applied at the moment so they look very basic.</li>
+<li>The Tracker and Things are made available over a basic REST-like Web Service. Separating the method of publishing the TTN data from the DHT network has the benefit of making it available to a wider range of potential clients.</li>
+<li>Other nodes can be added to the client by their ID. The trackers of the remote node are then loaded and can be browsed - although I think there is a bug whereby the client loses track of the node when looking up it's tracker and can't find it's things - but I have to double check.</li>
+<li>The remote tracker and things are cached locally. The client does not yet periodically check to see if there are any updates. Currently the cache has to be purged by hand if the client should retrieve the data again.</li>
+<li>A basic messaging system exists, whereby a node will forward a message it receives to each of it's siblings - this would allow a way of nodes announcing updates to the network. An alternative may be to use RSS to publish updates, and it probably makes sense to do both so that a wider range of clients can interact.</li>
+<li>The client can also read a Tracker which might not originate from a TTN Node, i.e. a website or something. I'm not terribly happy about how I have implemented it though (it uses the concept of a dummy TTN Node to wrap the site) and I don't think it works very well yet. The goal would be that the client could read TTN trackers from any number of sources, not just participants of the DHT network.</li>
+</ul>
+<p>Just writing these few lines reinforces to me just how how much the client is trying to achieve. One of my thoughts on tackling this is by modularisation. Currently the client has too many responsibilities, and is trying to cover too many use cases, I think. I'll try and enumerate the basic requirements:</p>
+<ul>
+<li>Store metadata about Things in the form of Trackers.</li>
+<li>Provide a decentralised way of sharing this information.</li>
+<li>Discover other Trackers and Things.</li>
+<li>Present this information to the user.</li>
+</ul>
+<p>The devil of course is in the detail. Expanding on these:</p>
+<ul>
+<li>A Thing may have several revisions.</li>
+<li>A remote Tracker may be off-line.</li>
+<li>A remote Tracker may contain malicious content.</li>
+<li>The client should run on various platforms, possibly running headless on a server, host, Raspberry Pi, etc.</li>
+<li>The metadata should be accessible to non-TTN clients, i.e. via an API.</li>
+<li>...etc...</li>
+</ul>
+<p>So perhaps instead of the client attempting to do all of these things it should be split up into smaller modules which tackles each thing in turn, i.e. a module which does nothing else apart from manage the actual Trackers; another which provides an API for the Trackers; another which connects to the DHT; another which publishes an RSS feed; another which searches for other Trackers, etc.</p>
+<p>I also suspect that I should try and not cover so many bases at first, and just try and produce a limited, but stable, solution that is perhaps only understandable by fellow programmers/hackers at first, and then expand in it to make it more suitable for a wider audience.</p>
+<p>In any case I hope that I can get past this current blockage and start producing some tangible results soon.</p>

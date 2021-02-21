@@ -1,0 +1,37 @@
+---
+layout: post
+status: publish
+published: true
+title: Hacking Printrun to send a chat message when a job is finished
+
+
+
+date: '2011-08-21 22:46:55 +0200'
+date_gmt: '2011-08-21 21:46:55 +0200'
+categories:
+- Host
+- Hacks
+tags:
+- Printrun
+- XMPP
+comments: []
+---
+<p>My Prusa lives in the <a href="http://forums.reprap.org/read.php?1,85366,85415#msg-85415">workshop room</a> but my main PC lives in our main living area. &nbsp;In order to be notified when a print is finished I have made a little hack in <a href="https://github.com/garyhodgson/Printrun">Printrun</a> so that it sends a message over <a href="http://en.wikipedia.org/wiki/Extensible_Messaging_and_Presence_Protocol">XMPP</a> to my chat client when the print is finished.</p>
+<p><em>(Note: My version of Printrun is not yet in sync with the <a href="https://github.com/kliment/Printrun">latest from Kliment</a> because mine uses Skeinforge and his uses SFACT. If you use SFACT and want this hack then let me know and I will create a branch in my repo to mirror the latest version from Kliment.)</em></p>
+<p>First install the <a href="http://xmpppy.sourceforge.net/">xmpppy</a> library. I used pip:</p>
+<pre>pip install xmppy</pre>
+<p>Second step is optional, but I created a jabber account for the printer at <a href="https://register.jabber.org/">jabber.org</a>, so as not to use my day-to-day account:</p>
+<pre>garyhodgson_3dprinter_prusa@jabber.org</pre>
+<p>Finally, with the hacked version of pronterface, enter the new xmpp settings in the options tab:</p>
+<p><img class="aligncenter size-full wp-image-734" title="printrun_xmpp_settings" src="/reprap/assets/images/wp-content/uploads/2011/08/printrun_xmpp_settings.png" alt="" width="312" height="459" /></p>
+<ul>
+<li><strong>xmpp_notification_jid </strong>: The jabber id used to send the message.</li>
+<li><strong>xmpp_notification_password </strong>: The password of the jabber id used above.</li>
+<li><strong>xmpp_notification_server </strong>: The server name of the jabber service you wish to use, e.g. jabber.org</li>
+<li><strong>xmpp_notification_target_jid </strong>: the jabber id of the account you wish to send a message to.</li>
+</ul>
+<p>(Note: The port defaults to 5222, but it would be trivial to turn this into a setting too.)</p>
+<p>That's it. &nbsp;Now Printrun will send a message when the job is finished:</p>
+<p><a href="http://garyhodgson.com/reprap/2011/08/hacking-printrun-to-send-a-chat-message-when-a-job-is-finished/xmpp_notification/" rel="attachment wp-att-735"><img class="aligncenter size-full wp-image-735" title="xmpp_notification" src="/reprap/assets/images/wp-content/uploads/2011/08/xmpp_notification.png" alt="" width="579" height="511" /></a></p>
+<p>One small hiccup I did find is that Printrun calls the "end callback" function when the job is paused as well as at the very end. &nbsp;This means the message is sent when the job is paused, which is something I can live with at the moment.</p>
+<p>The actual code change can be seen in this <a href="https://github.com/garyhodgson/Printrun/commit/58867d0814b963af29411ad7d087bb2905d78933">commit</a> (but note that a later commit fixes the indentation :))</p>

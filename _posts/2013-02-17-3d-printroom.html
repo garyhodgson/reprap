@@ -1,0 +1,155 @@
+---
+layout: post
+status: publish
+published: true
+title: 3D Printroom
+
+
+
+date: '2013-02-17 22:43:46 +0100'
+date_gmt: '2013-02-17 21:43:46 +0100'
+categories:
+- 3D Printroom
+tags: []
+comments:
+- id: 32768
+  author: Derek Quenneville
+
+  author_url: http://www.techknight.com
+  date: '2013-02-17 23:30:31 +0100'
+  date_gmt: '2013-02-17 22:30:31 +0100'
+  content: "This is definitely the sort of thing that anyone who has 3D printed for
+    a while eventually needs... I keep my stuff sorted into a folder structure in
+    Dropbox so that I always have access to everything.\r\n\r\nI use a 3D printing
+    folder under my main Projects dir for my own creations and remixes, but for stuff
+    I've just downloaded it goes into categories inside a separate 3D models folder
+    (like next to Music and Photos).\r\n\r\nCategorizing stuff gets a bit weird. Some
+    of the top-level categories in my model folder include: \"Colbert\", \"Facial
+    hair\", \"Household\", etc.\r\n\r\nI think that I'd also want to keep track of
+    the original source URL for the object."
+- id: 33089
+  author: dzach
+
+  author_url: ''
+  date: '2013-02-20 13:52:41 +0100'
+  date_gmt: '2013-02-20 12:52:41 +0100'
+  content: "Bringing order to the chaos of ideas, designs and creations requires a
+    lot of effort. Successful attempts, like Thingiverse, show that at the center
+    of their success is a good visual of the object.\r\n\r\nYour own Development Tracker
+    is a good example of an application that collects scattered information and metadata;
+    I find it very useful. However it concentrates on textual descriptions and (mostly)
+    lacks visuals.\r\n\r\nSad as it can be for the Semantic Web, it looks like Google's
+    way, i.e. unstructured combinations of atomic meaning, such as it is carried by
+    a picture, is better suited for the current technology, i.e. keyboard, mouse and
+    screen, than is a well defined structure of metadata. What could possibly change
+    it, is another kind of interface which would make  it easier for humans to communicate
+    with the machines. Seeing is easy (thus visuals) but reading (thus reasoning)
+    requires effort.\r\n\r\nVoice might be the HM interface that could make a big
+    difference. Doesn't require visual attention, can work in parallel with other
+    activities and it is structured itself. Because voiced nonsense is very annoying,
+    one would expect that incoherent atomic meaning would be a failure for a voice
+    HMI. In the case of a voice HMI, structured metadata would give the machine ways
+    for reasoning and would provide humans with coherent answers.\r\n\r\nI follow
+    your efforts to bring order to this chaos, and the same thing comes up over and
+    over: the iconic world needs just icons. It's the world of reasoning that needs
+    structure. But reasoning is locked out by the current technologies we use, unless
+    we are determined to make the effort. And make it continuously."
+- id: 33092
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2013-02-20 15:17:00 +0100'
+  date_gmt: '2013-02-20 14:17:00 +0100'
+  content: |-
+    You make good points.  I would say though that voice as an interface mechanism brings a whole set of new challenges that would have to be dealt with before it brings real benefits.  As is the case with video, there is little way to "skim" the content to evaluate whether it should be looked at in more detail, for example.
+
+    I think some form of graphical visualisation may be the most promising route, but providing a coherent and useful visualisation is extremely challenging, as you mention.
+
+    It's certainly an interesting problem to attempt to solve!
+- id: 47383
+  author: jt
+
+  author_url: ''
+  date: '2013-04-23 15:41:08 +0200'
+  date_gmt: '2013-04-23 14:41:08 +0200'
+  content: awesome idea.
+- id: 55744
+  author: Jasper den Ouden
+
+  author_url: http://ojasper.nl/
+  date: '2013-06-06 00:28:18 +0200'
+  date_gmt: '2013-06-05 23:28:18 +0200'
+  content: "This has one goal similar to githubiverse and thingscript; it tries to
+    represent files. \r\n\r\nPersonally have thought of trying to make thingscript
+    make a server that functions a bit as a file browser, so you can browse projects
+    you downloaded(/git cloned, gotten from a floppy whatever) offline. I suppose
+    then being able to use it as a file-browser -in which it makes sense of files
+    it knows- would make sense too.\r\n\r\nThis looks similar to that. If the stars
+    align maybe this or something like this can be developped, developping the representation
+    for web serving at the same time as the application. What i see about node-webkit
+    so far bodes well.\r\n\r\nThingscript(well the default way of using it) aims at
+    a gallery similar to thingiverse as the central thing. So it looks for <code>thingscript/gallery_list</code>
+    for the list with an order of files to generate parts of the gallery from.(it
+    also has <code>thingscript/thumbnail</code>, and defaults for stuff, in that case
+    the first element of the gallery list)\r\n\r\nNot that the thingscript approach
+    is completely right. For one i <i>think<i> filesystems arent aimed at many tiny
+    files neither storage efficiency or more importantly, lookup speed. But it'd have
+    to have some kinds of standards about where to put stuff. \r\n\r\nAdditionally
+    thingscript has customization is best done via some hierarchy(though now i realize
+    it doesnt quite work the way it should), for instance if the project maker likes
+    some awful pink scheme, maybe the user could override it. Similarly, the gallery
+    is just the default.. But it is also kind of a convention, the project maker might
+    not follow that convention, but the user doesnt want to bother with that silly
+    guys whims, then whatever data around may still be usable to cook up a more conventional
+    page.(for instance <code>gallery_list</code> could be automatically made, not
+    as good as hand-crafted but whatever)\r\n\r\nThat said maybe this post is quite
+    a bit premature :) maybe i should have looked at 3d printroom a lot more before
+    typing :)"
+---
+
+<p>A small distraction I thought up a few days ago involves how we organise our STL and gcode files. &nbsp;The Windows and Linux file explorers are rather limited when dealing with exotic files (no previews, no metadata). Additionally, I don't know how other people manage their files, but mine are scattered across my main PC, my laptop and a NAS, within arbitrarily named folders filled with overly long file names (in an attempt to capture some metadata). It certainly has it's limitations!</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2013/02/chaos.png"><img class=" wp-image-1328" title="file chaos" alt="file chaos" src="/reprap/assets/images/wp-content/uploads/2013/02/chaos.png" width="388" height="374" /></a>
+  <p><small>Chaos! Chaos I tell you!</small></p>
+</p>
+
+<p>This seems ripe for an application of some sort (ignoring the patently absurd, if rational, argument to simply impose a little order on things).</p>
+
+<p>I have always enjoyed using <a href="http://www.adobe.com/products/photoshop-lightroom.html">Adobe Lightroom</a> to organise and work on my photos - it has several features that could be very useful when dealing with 3D printer files:</p>
+
+<ul>
+<li>Directory scanning &amp; sync</li>
+<li>Arbitrary collections and groups</li>
+<li>Adding additional metadata, including comments and ratings</li>
+<li>Previews of non-standard files (e.g. RAW)</li>
+</ul>
+
+<p>
+    <a href="/reprap/assets/images/wp-content/uploads/2013/02/lightroom.jpg"><img class=" wp-image-1323" title="Adobe Lightroom" alt="Adobe Lightroom" src="/reprap/assets/images/wp-content/uploads/2013/02/lightroom.jpg" width="614" height="416" /></a>
+    <p><small>Adobe Lightroom - something to aspire to.</small></p>
+</p>
+
+<p>I wish I could announce that I have completely written a "Lightroom for 3D Printers" but at this stage I have only created a skeleton app with limited functionality:</p>
+<ul>
+<li>Drop a directory in the top left panel to load it.</li>
+<li>The top file view filters only STL files.</li>
+<li>When an STL is selected the related gcode files are displayed below. This assumes the files start with the same name, e.g. cube.stl -> cube.gcode.</li>
+<li>Any metadata in the gcode file is displayed in a table view (Slic3r only).</li>
+<li>Double clicking a STL file displays a preview (thanks to Tony Buser's Thingiview).</li>
+<li>Double clicking a gcode file displays a preview (thanks to Joe Walnes' gcode-viewer).</li>
+</ul>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2013/02/3D-Printroom.png"><img class=" wp-image-1322" title="3D-Printroom" alt="3D-Printroom" src="/reprap/assets/images/wp-content/uploads/2013/02/3D-Printroom.png" width="594" height="415" /></a>
+  <p><small>3D Printroom (Alpha!)</small></p>
+</p>
+
+<p>... and that's it ... so far.</p>
+
+<p>The reason I am posting about this already is to share the idea, gauge interest, and to make the source code available in case anyone wants to pick it up and hack with it.</p>
+
+<p>I chose to develop it with <a href="https://github.com/rogerwang/node-webkit">node-webkit</a>, which allows you to develop with HTML + JS + CSS but still release a native binary. (This is necessary in order to use node.js so the local filesystem can be accessed). I've added a few notes on the <a href="https://github.com/garyhodgson/3D-Printroom">github project</a> on how to hack with it. &nbsp;Or there is a Windows binary available to play with: <a href="https://www.dropbox.com/s/sg9fidyca845h7w/3D-Printroom-distribution.zip?dl=0">3D-Printroom-distribution.zip</a>.</p>
+<p>I'd be interested to hear if anyone thinks such an app would be useful.</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>

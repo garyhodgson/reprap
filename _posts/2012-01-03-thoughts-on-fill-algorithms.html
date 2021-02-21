@@ -1,0 +1,693 @@
+---
+layout: post
+status: publish
+published: true
+title: Thoughts on Fill Algorithms
+
+
+
+date: '2012-01-03 19:45:26 +0100'
+date_gmt: '2012-01-03 18:45:26 +0100'
+categories:
+- 3D Modelling
+tags: []
+comments:
+- id: 1719
+  author: Dale Dunn
+
+  author_url: ''
+  date: '2012-01-03 21:10:06 +0100'
+  date_gmt: '2012-01-03 20:10:06 +0100'
+  content: "An interesting post. I definitely like the idea of a fill pattern that
+    uses less material and by implication takes less time to build. To some extent,
+    users have been addressing this issue by designing structural parts with thin
+    walls rather than simple block shapes. <a href=\"http://www.thingiverse.com/iphone/thing:4234\"
+    rel=\"nofollow\">Example</a> \r\n\r\nFor a show part like Yoda's head, the volume
+    to be filled can be reduced by creating a spherical void approximately at the
+    centroid of the model, but that all needs to be done by hand.\r\n\r\nCAD modeling
+    systems don't really deal with whatever the interior of a solid is. The faces
+    are simply a boundary between \"inside\" and \"outside\". However, FEA analysis
+    of a solid model involves creating a volumetric mesh similar to the 3D tessellation
+    you mentioned. Algorithms exist for generating meshes of different elements such
+    as cubes of various proportions (generally called \"bricks\"), tetrahedrons (\"tets\"),
+    octahedrons, and maybe more. Vertices of each element are called nodes, and they
+    may be useful too.\r\n\r\nThere are interactive tools used to increase or decrease
+    the mesh density in areas where this is useful to the simulation. (There are algorithmic
+    methods for determining where mesh density should vary from default, but I think
+    they're all dependent on iterations of the FEA solution. Anyhow, it would be useless
+    to us because the density of FEA meshes does not correspond to where we would
+    want mesh density to change.) There are even some meshers that can use elements
+    of different shapes. Surely there is literature available describing at least
+    the less sophisticated forms of these meshers. I know there must be at least one
+    open source mesher, though I don't know its name. I'm sure it's documented somewhere
+    at caelinux.com.\r\n\r\nI said all that to say this: The elements of a mesh could
+    determine walls of infill (or support structure), or the interior nodes (nodes
+    not not on a model face) of a tetrahedral mesh could define the centers of spherical
+    voids in the fill. Perhaps some fill elements based on existing FEA mesher elements
+    could be developed to reduce warping as well as reducing the amount of fill.\r\n\r\nPerhaps
+    it would even be possible to have the mesher automatically decrease mesh density
+    as some function of distance from the model's faces. This would give strong faces
+    with very little fill of the deep interior."
+- id: 1721
+  author: RichRap
+
+  author_url: http://www.richrap.blogspot.com
+  date: '2012-01-03 21:59:43 +0100'
+  date_gmt: '2012-01-03 20:59:43 +0100'
+  content: "Great blog post and really nice ideas Gary.\r\n\r\nIt would be really
+    interesting to test build Speed v Strength of fill and level of infill,I really
+    like the idea of using the vertices of the target model for generating internal
+    edges, this should be fast to print and give strength to the model.\r\n\r\nOne
+    thing I have always wanted to try is to print a model hollow for say 3-4mm high
+    then place the extruder at regular points in the hollow voids and just purge a
+    set amount of plastic into the void, move the extruder on a regular distance and
+    maybe on a slight regular angle and then purge again, with some experimentation
+    you could get to a level where the purged points just join together and also against
+    the walls of the hollow object,then print a loose mesh over it and build another
+    hollow section, repeat with the same all the way up the object.\r\nIt should be
+    fast as you can purge quickly with most hot-ends and strong if the balls are placed
+    well, but may use slightly more plastic?\r\n\r\nI did consider making some manual
+    gcode to test the idea of a 'blob-filled-object' but have not  tried yet.\r\n\r\nIf
+    you also had two extruders, you could also have one with a bigger nozzle and low
+    grade plastic for the blob-infill and fine quality plastic on the other for the
+    hollow outline."
+- id: 1722
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-03 22:06:59 +0100'
+  date_gmt: '2012-01-03 21:06:59 +0100'
+  content: "Hi Dale, thanks for the comment! I would never have come across Finite
+    Element Analysis otherwise.  From what you describe, and what I can glean from
+    <a href=\"http://en.wikipedia.org/wiki/Finite_element_method\" rel=\"nofollow\">Wikipedia</a>,
+    it sounds like it's worth investigating. As you say, the algorithms used could
+    have an application here - another avenue to explore.  The comment about a varying
+    mesher density in relation to the walls coud perhaps produce a pattern similar
+    to the Hyperbolic Planar Tesselation shown above.\r\n\r\nWhat you say about people
+    designing hollow models is spot on.  I love the idea behind the <a href=\"http://www.thingiverse.com/thing:2204\"
+    rel=\"nofollow\">Hollow Mini-Mendel</a> for example.  As I was pondering alternatives
+    I kept coming back how useful it would be to manually define internal supports
+    to existing model files, i.e. opening an STL file in an editor and saying \"ok,
+    a strut should go here, and a joist here\", etc.  I guess it can be seen as a
+    design technique to create a model which uses the minimum material (I know I always
+    try and cut off unecessary corners and such), but it would be nice to be able
+    to create the (solid) model, and then go into it afterwards adding supports etc.
+    \ I really think the original designer should at least have the ability to say
+    how the model should be supported, with the next best thing an intelligent algorithm
+    of some sort. \r\n\r\nLots to read and lots to play with!"
+- id: 1723
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-03 22:23:44 +0100'
+  date_gmt: '2012-01-03 21:23:44 +0100'
+  content: "Hi Rich, The purge idea would be really interesting to try, and could
+    open up new ways of filling.  I'll look forward to reading your writeup if you
+    get around to trying it out!  I can imagine solid columns rising within the model,
+    or an algorithm choosing to purge-fill a thin part of the model (e.g. the motor
+    wall in the examples above).\r\n\r\nOne further consideration I had, about making
+    the internal walls faster to print, is that they could be curved to maximise acceleration.
+    \ (This is probably the reason I used spheres in my example rather than octohedrons
+    I guess.)  I can imagine a series of continuous loops flowing within the model
+    making up the support.  One of the challenges I can foresee is how to efficiently
+    connect the support vertices to maximise nozzle speed and reduce retractions and
+    changes in direction.   Yet another maths problem! :)"
+- id: 1724
+  author: Regulus
+
+  author_url: ''
+  date: '2012-01-03 22:36:37 +0100'
+  date_gmt: '2012-01-03 21:36:37 +0100'
+  content: "This reminds me of the <a href=\"http://www.thingiverse.com/thing:12535\"
+    title=\"Rhombic Dodecahedron Infill by Griffin_Nicoll\" rel=\"nofollow\">Rhombic
+    Dodecahedron Infill by Griffin_Nicoll</a>, a similar idea and the same implementation
+    in OpenSCAD to generate a \"preview\" of what the model might be like, filled
+    in.\r\nI printed a few of those tests, and they were really strong!\r\nI really
+    like your speculation on the tessellation, essentially making the space-filling
+    pattern become a fractal as it gets closer to the edges of the object it fills.\r\n\r\nYou
+    could generate that by overlapping the pattern with the object, finding locations
+    where the pattern intersects the walls, and subdividing them, then repeat. Large
+    gaps will be filled with whatever size you start with, small or irregular spaces
+    with a sponge of mixed-size shapes down to whatever you specify as maximum resolution.\r\n\r\nHowever,
+    you also have to specify a minimum thickness on the walls, or you will get internal
+    shapes coming up flush with the outer mesh, creating a very thin (but not intersecting)
+    wall, useless as a structural element."
+- id: 1736
+  author: Martin Price
+
+  author_url: http://www.HeliumFrog.com
+  date: '2012-01-04 16:42:58 +0100'
+  date_gmt: '2012-01-04 15:42:58 +0100'
+  content: "Gary\r\n\r\nGreat blog very interesting. I posted on reprap forums, but
+    another thought occured to me. You might have a look at producing the internal
+    structures by raster scanning the head back and forth rather than producing the
+    internal structure by complex paths. It would be a case of just switching the
+    extruder off and on, or using a simple valved nozzle (I think Adrian Bowyer did
+    some work on this) . It would open up the possibility of multiple nozzle heads
+    etc. Doing it this way might throw up some alternative fill patterns you havent
+    yet considered.\r\n\r\nBy the way if you are struggling with your CAD and need
+    a few test cubes knocked up drop me an email. I have Catia V5 here so should be
+    able to do a few fill patterns quite easily for you to save some time."
+- id: 1737
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-04 19:08:27 +0100'
+  date_gmt: '2012-01-04 18:08:27 +0100'
+  content: "Thanks Martin, when I make some progress I'll get in touch.\r\n\r\nI believe
+    <a href=\"http://reprap.org/wiki/ExtruderImprovementsAndAlternatives#Nozzle_valve\"
+    rel=\"nofollow\">this is the valve nozzle</a> that Adrian built that you refer
+    to.  Your idea hints at InkJet-type technology, but at a slightly larger scale
+    and more mechanically oriented of course.  As you describe , if one had a reservoir
+    of molten material, under pressure, behind a set of \"doors\" (valve nozzles)
+    would it be possible to squirt the plastic under controlled circumstances I wonder?
+    \ \r\n\r\nInteresting options!"
+- id: 1739
+  author: Jay Kominek
+
+  author_url: ''
+  date: '2012-01-04 19:52:31 +0100'
+  date_gmt: '2012-01-04 18:52:31 +0100'
+  content: Keep in mind you don't need to find the ideal answer for any of the packing
+    problems you're interested in, just one that is close enough. That is usually
+    quite a bit easier. And in this case, if you can arrange for your imperfections
+    to be ones which cause additional material to be added, then you're not too bad
+    off.
+- id: 1740
+  author: Alex
+
+  author_url: http://www.protoparadigm.com
+  date: '2012-01-04 20:38:51 +0100'
+  date_gmt: '2012-01-04 19:38:51 +0100'
+  content: "Thank you for this writeup.  I was working on this line of reasoning myself,
+    mostly headed towards the automated truncated octahedron or shpere packing.\r\n\r\nI
+    completely agree with your thoughts on moving some of the fill details to the
+    model.  There was an old post syndicated on the reprap blog last spring (http://josefprusa.cz/selectively-making-parts-of-object-stronger-o)
+    that this also made me think of.  The idea that increasing surface area in a dimension
+    increases the strength in that dimension (like a tube being more rigid than a
+    rod).\r\n\r\nGreat post, thank you."
+- id: 1741
+  author: Thomix
+
+  author_url: ''
+  date: '2012-01-04 20:43:31 +0100'
+  date_gmt: '2012-01-04 19:43:31 +0100'
+  content: "I imagine this would work great with topology optimization software: the
+    way of working I saw was to load an object, mesh it finely and define areas that
+    will bear loads, need a certain thickness or stiffnesses for instance. The software
+    then takes your meshed object and deletes any element that does not contribute
+    to the boundary conditions enough.\r\nI assume this way you can eliminate elements
+    (ie, increase the percentage of infill) without compromising the function of the
+    part.\r\nThe only topology optimization software I am aware of is part of HyperX
+    which is commercial (and very expensive) but I can imagine the algorithm isn't
+    that complicated."
+- id: 1745
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-04 22:01:32 +0100'
+  date_gmt: '2012-01-04 21:01:32 +0100'
+  content: "Hi Regulus, Sorry your comment took a while to appear - it went to my
+    spam folder because the link was somehow malformed.\r\n\r\nI was searching ages
+    for this link!  I knew I had seen something very similar before but my web searches
+    came up empty - I had thought it was a blog post about Skeinforge, and so I got
+    the keywords wrong. In fact it seems I was the first to \"like\" this Thing! :)\r\n\r\nLooking
+    at it again it's obvious that this is the thing that got me thinking about the
+    whole subject in the first place.  It must have really stuck in my subconscious
+    because the model I printed is so similar to this one!\r\n\r\nI like your idea
+    of breaking down the model into banded zones in order to vary the fill density
+    - I'll certainly keep it in mind when trying to put together the algorithm!"
+- id: 1748
+  author: dave
+
+  author_url: ''
+  date: '2012-01-05 00:55:20 +0100'
+  date_gmt: '2012-01-04 23:55:20 +0100'
+  content: "Hi,\r\n\r\nThis is funny, I went through the identical exercise.. in cluding
+    the expeeriment to subtract an array of balls from an object to create a sparse
+    structure.. I used solidworks, and had the same result: it simply didn't perform
+    well enough.  I also experimented with automated shelling, which works for some
+    objects too.\r\n\r\nI ended up concluding exactly what most have said here: that
+    the right place to include the definition of what should be filled and what should
+    not simply should be included in the object definition in the first place.  If
+    it deosnt need to be built 100 percent dense, do the modificationa in the model,
+    and then everyone else just prints with 100 percent fill.\r\n\r\nIt is not sexy,
+    but its right.  One of the reasons people do not do this today is that stl files
+    are already horribly inefficient, and creating a complex solid with lots of small
+    internal voids will produce mesh issues.. in my option the biggest problem in
+    the 3d printing chain right now.\r\n\r\nOf course if we could all design objects
+    with infill density 'baked in' and then use a decent format like step, the files
+    would be small and slice fast.  I have a prototype slicer that will slice step
+    files ( and produce g2 and g3 arcs instead of line segments ) that runs on simple
+    parts like above in about 200 milliseconds.  I have been working on honeycomb
+    fill, but in the end even though that's the best fill (can't argue with eevolution)
+    , It is no match for the product designer building it in"
+- id: 1784
+  author: Ax
+
+  author_url: ''
+  date: '2012-01-09 02:43:41 +0100'
+  date_gmt: '2012-01-09 01:43:41 +0100'
+  content: After reading your post I came to idea that I described in http://axuv.blogspot.com/2012/01/adaptive-infill.html
+    - it should fill small areas with fine fill supporting internal overhangs and
+    strenghtening surfaces, and create stronger ribs which give rigidity to objects
+    with bigger empty internal areas.
+- id: 1790
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-09 08:47:46 +0100'
+  date_gmt: '2012-01-09 07:47:46 +0100'
+  content: "Hi Ax,  Thanks for the post, I like the idea, and as you say, it should
+    be reasonable to implement. I think this could be a neat way to handle the heterogeneous
+    shape problem.\n\nI had a similar idea of dividing the model into grids and then
+    using each voxel (I guess that's the right term?) as a basis for determining the
+    internal struts. I was thinking each voxel could be given an attribute describing
+    the force being applied to it (e.g. if it has a filled voxel underneath then the
+    value is lower than one that is hanging over space) and the attribute value being
+    calculated from it's nearest neighbours.  Then, when a voxel has an attribute
+    over a certain limit a support voxel is placed underneath, and so on for each
+    layer.  \n\nI'm going to collate all the ideas and opinions that have been discussed
+    here, and from the <a href=\"http://forums.reprap.org/read.php?1,112104\" rel=\"nofollow\">related
+    forum post</a>, into a follow-up post.  However, I'll quickly mention an interesting
+    paper which, I believe, achieves similar results mathematically using Functional
+    Representation for the model: \"Procedural function-based modelling of volumetric
+    microstructures\" (<a href=\"http://hyperfun.org/wiki/lib/exe/fetch.php?media=ms_gm_revised_final.pdf\"
+    rel=\"nofollow\">PDF Download</a>)  Particularly pages 8, 12 and 17 if you just
+    want to see some images of what it could achieve."
+- id: 1797
+  author: Ax
+
+  author_url: ''
+  date: '2012-01-09 15:16:37 +0100'
+  date_gmt: '2012-01-09 14:16:37 +0100'
+  content: "Yes, voxel will probably be the right term here. I am not sure how your
+    method would produce printable infill, how you convert your floating support pixels
+    into planes of infill that mesh with each other.\r\n\r\nThat paper is interesting,
+    but I am not sure how computationally difficult this is."
+- id: 1798
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-09 16:00:19 +0100'
+  date_gmt: '2012-01-09 15:00:19 +0100'
+  content: You're quite right! As I described it there would be voxels hanging in
+    space.  I guess the algorithm would have have a rule that any new support voxel
+    would always have to have another underneath it. (With the algorithm working from
+    the top down).  I obviously have to think a bit more about it because this doesn't
+    answer how the infill paths could be derived from such a pattern.
+- id: 1821
+  author: Torleif Ceder
+
+  author_url: https://sites.google.com/site/goteborg360/
+  date: '2012-01-11 13:56:56 +0100'
+  date_gmt: '2012-01-11 12:56:56 +0100'
+  content: '<a href="http://www.youtube.com/watch?v=RJedjs8s0rA&amp;feature=related"
+    title="ProtoSphere: A GPU-Assisted Prototype Guided Sphere Packing Algorithm for
+    Arbitrary Objects" rel="nofollow">ProtoSphere: A GPU-Assisted Prototype Guided
+    Sphere Packing Algorithm for Arbitrary Objects [@Youtube]</a>'
+- id: 1826
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-01-11 22:58:23 +0100'
+  date_gmt: '2012-01-11 21:58:23 +0100'
+  content: 'Thanks for the link (I added a title so people know where it''s leading).  The
+    related website is also worth looking at: http://cg.in.tu-clausthal.de/research/protosphere/index.shtml'
+- id: 2119
+  author: Andy Jackson
+
+  author_url: ''
+  date: '2012-02-07 01:11:40 +0100'
+  date_gmt: '2012-02-07 00:11:40 +0100'
+  content: "If the goal is a fractal, just have your outer shell shrunk and supports
+    (at some frequency) from an outer-shell point to it's shrunk point. Then repeat
+    this to the middle. For circles it's great, but irregular shapes would need to
+    redefine the \"shrunk\" object to not be a simple scale, but a deflation perpendicular
+    to the outer wall so that a shrunk \"3d long rectangle\" would be a skinnier rectangle
+    and not a scaled-smaller one with diagonal braces. \r\n\r\nAlthough this would
+    only help crush-strength, not shear strength, it could make an easy basis to then
+    make touching-oval or cross bracing between the layer &amp; it's shrunk form that
+    will always perfectly fit."
+- id: 2416
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-02-29 14:01:17 +0100'
+  date_gmt: '2012-02-29 13:01:17 +0100'
+  content: 'For reference in case anyone reads this in the future: Kean Walmsley has
+    written an excellent series of posts addressing many of these ideas.  I highly
+    recommend reading the entire series as there are many useful links!  http://through-the-interface.typepad.com/through_the_interface/2012/02/sphere-packing-in-autocad-filling-an-arbitrary-solid-using-net.html'
+- id: 3303
+  author: hairykiwi
+
+  author_url: ''
+  date: '2012-04-03 13:52:02 +0200'
+  date_gmt: '2012-04-03 12:52:02 +0200'
+  content: "An interesting discussion and further links, thanks Gary. Have you seen
+    Netfabb's 'Selective Space Structures? (Unfortunately for the DIY community) it's
+    commercial software, priced around &euro;800, however it may provide someone with
+    a little inspiration for an open source solution:\r\nhttp://www.netfabb.com/structure.php\r\n\r\nThe
+    links to the lower right side of the above page are worth a look too."
+- id: 3305
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2012-04-03 14:17:23 +0200'
+  date_gmt: '2012-04-03 13:17:23 +0200'
+  content: Thanks for the link! I didn't realise Netfabb had such functionality.  It's
+    definitely closely relates to the ideas expressed here.
+- id: 3969
+  author: Bruce Layne
+
+  author_url: ''
+  date: '2012-05-20 20:15:40 +0200'
+  date_gmt: '2012-05-20 19:15:40 +0200'
+  content: "For computational simplicity AND maximum rigidity with minimal material,
+    I think it'll be hard to avoid a triangular fill.  Lots of tensegrity in triangles.
+    \ Forces applied at a vertex are translated across the matrix via the two adjacent
+    legs.  I had linear algebra and could have probably done the Eigenvector analysis
+    back in the 1980s, but I think most people will grok the concept without doing
+    the math.  It's intuitive.  It's basically the same concept as a space frame.\r\n\r\nFor
+    each horizontal slice, the algorithm would locate internal corners if available,
+    and draw lines between them.  If the resulting triangles are larger than the mesh
+    size to support a ceiling without excessive sagging, each triangle is subdivided
+    into four smaller triangles.\r\n____\r\n\\  /\\  /\r\n \\/_\\/\r\n  \\  /\r\n
+    \  \\/\r\n\r\nIt's not only computationally efficient when calculating the fill
+    pattern, and efficient in the use of material to achieve a rigid structure, it's
+    also efficient when printing.  3D printers like lines.  Some of the other fill
+    patterns require frequent changes in the direction of the print head, so the printer
+    is always in the slow side of the accel/decel curve, thus limiting print speed,
+    and therefore material dispensing rate.\r\n\r\nFor extruded shapes where each
+    horizontal slice is the same, that would work well, but the concept of a triangulated
+    mesh would need to be extended between layers for more organically curved shapes.\r\n\r\nMaybe
+    a good compromise between optimal strength and minimized computational requirements
+    would be a tetrahedral fill pattern at the needed mesh size to support a solid
+    ceiling top layer, that simply intersects with the inner boundary of the outer
+    part surface, as mentioned in the article.  I would have linear load paths (rigid)
+    that are distributed throughout the fill matrix (strong and durable)."
+- id: 4805
+  author: thecraazy
+
+  author_url: http://blog.gearforge.com
+  date: '2012-06-28 19:58:40 +0200'
+  date_gmt: '2012-06-28 18:58:40 +0200'
+  content: "While reading the begining of your post I had the same Idea of intersecting
+    the model with a predefined fill pattern... read a little more and VOILA! great
+    minds think alike :P\r\n\r\nI think intersecting with a spherical pattern is an
+    excellent Idea that deserves to be seriously looked into. The pattern would be
+    quick to generate and to make the filling more... solid we could make the spheres
+    adjustable in size. \r\n\r\nSo we could print with a pattern of spheres that are
+    very small for more solidity or larger for quicker prints.\r\n\r\nAnother thing
+    to look into would be creating arcs (or circles) inside the object, optimized
+    in size and shape so they touch the bottom, top and sides of the objects. No need
+    to print an entire sphere. Basicly similar to your sphere pattern but intersect
+    the bubbles into each other a little so that each bubbles are not entirely separate.
+    (and were the bubbles intersect there is no plastic, you can see trough each bubbles)
+    mm... sorry having a hard time explaining my idea. Hopefully you understand lol."
+- id: 6601
+  author: Eki Honkakoski
+
+  author_url: ''
+  date: '2012-09-24 16:25:39 +0200'
+  date_gmt: '2012-09-24 15:25:39 +0200'
+  content: "Here is my small contribution to this with two needs (and solution ideas)
+    I have encountered while printing. Some of these ideas are already mentioned above
+    already and some \"hollow ball\" ideas are quite nice...\r\n \r\nThis is just
+    more like a report of my (user) findings and needs.\r\n\r\n-Fills like line, rectilinear
+    and honeycomb i find useful. Adjustment parameter of fill density has been not
+    enough in my use. To get fill strings (connection points to perimeter) easily
+    with some trial about where I want is my need.\r\n\r\n-Fills like Hilbert curve,
+    Archimedian curve and Octagam Spiral I have not found a suitable use yet. Slow
+    speed is not obstacle for me if pattern is otherwise useful.\r\n\r\n-I have been
+    missing \"zero perimeter printing\" - just an infill pattern needed. (like raft
+    or support)\r\n\r\n1.\r\nBecause we are building in slice by slice most things
+    are in 2D form one after another. \r\nWe have already two-three useful methods
+    but placement needs to be structurally improved.\r\n\r\nWith tesselations of hyperbolic
+    2-spaces \"hyperbolic tilings\" we already have: \r\n\"Hextille\" (honeycomb)\r\n\"Quadrrlle\"
+    (line or rectilinear)\r\nWhat we are missing in fills is \"deltille\" (triangulation)\r\nAlso
+    there would be nice to have a mix between triangulation and rectilinear using
+    same and additional \"perpendicular\" nodes.  Like in Pratt Truss (http://en.wikipedia.org/wiki/Truss)\r\n\r\nWhat
+    I&acute;m talking about can be found here:\r\nhttp://en.wikipedia.org/wiki/List_of_regular_polytopes\r\n\r\n\r\nThere
+    is lines and nodes (places where lines connect)  in structural truss theory. Nodes
+    are usually to keep in place by fill lines that takes stresses by stretching and
+    compression. Lines are usually straight if flexing is not needed.  \r\n\r\nPlacement
+    of \"nodes\" = starting and ending points of fill lines. \r\nNodes in all corners
+    of perimeter are most important to place correctly - others can move. Nodes on
+    perimeter should be able to place according some parameter like \"# of nodes/inch\"
+    or\"max length between nodes\" or \"as close to 60&deg; to perimeter as possible\"\r\n\r\nAt
+    themoment a volumetric value of \"fill density\" makes nodes starting one side
+    to go where ever(?) and missing at least half structurally important places in
+    final part. \r\n\r\nThis would help my printings and design a great deal. \r\n\r\n2.
+    \"Backbone\" idea\r\nBuilding inside object an additional \"more solid\" structure
+    - a backbone - where tesselations - like ribs - are attached to hold thin perimeters
+    -as skin. \r\nThis backbone could be also hollow - rectangular or even better
+    oval in section shape to avoid overhangs.  \r\nThis may be a value in transparent
+    or opaque parts making. Print can be covered with other material (like skin) or
+    be filled with foam or clay etc. to make the final surface in some cases.\r\n\r\nThis
+    can be partly achieve in 3D drawing placing holes inside the object that slicing
+    understand as place of perimeter, this requires more on designing software&hellip;
+    Like hollowing or copying offsetting all faces for smaller object inside and subtracting
+    it from original - placement for center&hellip; this has its own disadvantages
+    like uniform thickness when not needed or thinner areas of parts have grater density
+    etc.\r\n\r\n\r\nPrinting with zero perimeter should produce just infill - this
+    I have been missing. \r\nI have wondered it when needed it to make part with a
+    large surface area just with infill but not been able to make before without doing
+    to g-gode (outch!).\r\n\r\nSlicer accepts 0 perimeters (minimum) - but likes to
+    make one.... :(\r\nNo I stop writing try it harder with \"support material\"!
+    \ \r\n\r\nHappy printing!\r\n358Eki with Huxley \r\n(thinking already additional
+    machine between multistrusion Mendel or Delta-type construction for high parts)"
+- id: 50457
+  author: al ket
+
+  author_url: ''
+  date: '2013-05-15 15:29:05 +0200'
+  date_gmt: '2013-05-15 14:29:05 +0200'
+  content: "Hi Gary.\r\nreading your paper, I thought of a further approach that might
+    be interesting.\r\nThe purpose of filling hllow parts is to obviously to add some
+    strength to the object without consuming too much matter (and time too!).\r\n\r\nEvolution
+    faced the same problem with birds bones who must be strong and light weighted
+    at the same time.\r\n\r\nBirds bones are hollow but have inner structural lattices
+    that keep them rigid when under constraint.\r\n\r\nBones naturally grow stronger
+    on parts where constraints are stronger.\r\n\r\nI suggest the following approach:\r\n\r\n-
+    Fill the object with even sized spheres\r\n- Compute the pressure between two
+    adjacent spheres when some kind of constraint (this is the tricky part!) is applied.
+    The constraint could result for example from simulating bending the object on
+    its longer size.\r\n- select the sphere under maximum pressure and replace them
+    by half size spheres (that should resist more)\r\n- remove any sphere having under
+    zero pressure.\r\n- Iterate\r\n\r\nThe iteration could start with one sphere (the
+    biggest fitting inside the volume).\r\n\r\nVariation:\r\nspheres could be replaced
+    with radiuses between their center and the contact point."
+- id: 50482
+  author: Gary Hodgson
+
+  author_url: http://garyhodgson.com
+  date: '2013-05-15 18:02:56 +0200'
+  date_gmt: '2013-05-15 17:02:56 +0200'
+  content: "Hi,  I think that an approach like this would definitely yield interesting
+    results, and is one of the reasons I started looking at Functional Representation
+    (Frep) as I had seen something slightly similar in the paper &ldquo;Procedural
+    function-based modelling of volumetric microstructures&rdquo; (<a href=\"http://hyperfun.org/wiki/lib/exe/fetch.php?media=ms_gm_revised_final.pdf\"
+    rel=\"nofollow\">PDF Download</a>) - particularly being able to adjust the properties
+    of holes and struts according to it's proximity to the edge of the model.  I had
+    hoped that this could be further developed to have each strut or gap depend on
+    its neighbours - exactly as you describe.  So far I implemented a rudimentary
+    playground to experiment with FREP (http://garyhodgson.github.io/frep-csg.js/),
+    and have recreated the <a href=\"https://gist.github.com/garyhodgson/5477631\"
+    rel=\"nofollow\">structures from the paper</a>, but haven't found the time to
+    develop it further - especially the time to get into the maths behind such algorithms.\r\n\r\nAlso
+    worth looking at is the <a href=\"http://www.youtube.com/watch?v=RJedjs8s0rA\"
+    rel=\"nofollow\">protosphere research</a>, which uses an algorithm to pack a model
+    with spheres - it might help out in producing the first iteration, which could
+    then be analysed as you describe.  Of course, going from an academic paper to
+    a working example is a long journey :)"
+- id: 79988
+  author: kloker
+
+  author_url: http://www.3dfilamenta.com
+  date: '2014-07-11 09:49:33 +0200'
+  date_gmt: '2014-07-11 08:49:33 +0200'
+  content: The packing material algorithms along with the existing tools made this
+    possible. Great work!
+---
+
+<p>Whenever I'm watching a print (because it <em>can</em> be hypnotising after all) I usually become acutely aware of any superfluous aspects of the design and how inefficient the fill patterns can sometimes be. &nbsp;The fact that the model is <em>sliced</em> into layers leads quite naturally to filling each of these layers with a 2D pattern. The line and grid patterns from <a href="http://skeinforge.com">Skeinforge</a> produce stable, solid objects from as little as 30% infill, and for the most part this is sufficient. <strong><em>I wonder though if we can find a better filling strategy? One that utilises the 3D nature of the model.</em></strong></p>
+
+<p>If the fill is to provide internal strength to an object and support any internal overhangs (ceilings), but also use minimal material, then I guess the ideal algorithm would analyze the model and identify where best to position struts, columns, butresses and such. &nbsp;Taking into account the printers ability to bridge gaps and so on.</p>
+
+<p>
+    <a href="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.mock_.struts.png.png">
+        <img class="size-medium wp-image-874" title="Mockup of model with ideal fill of struts, etc." src="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.mock_.struts.png-300x201.png" alt="" width="300" height="201" />
+      </a>
+    <p><small>Mockup of model with "ideal" fill of struts, etc."</small></p>
+</p>
+
+<p>Even if such an intelligent algorithm is possible it would no doubt be so computationally intensive as to break another constraint we should define: <em>that the fill pattern should be determined in a reasonable amount of time</em>.</p>
+
+<p>This is why the line algorithm works very well - it fits almost any organic or non-organic form, and can be computed relatively quickly. This is also demonstrated by the alternative fill patterns that Alessandro Ranellucci has implemented in <a href="http://slic3r.org/">Slic3r</a>: hilbertcurve, archimedeanchords and the octagramspiral patterns are marked as "slow" and indeed can take a long time to generate for non-trivial models.</p>
+
+<p><a href="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.slic3r.line_.png"><img class="size-medium wp-image-877" title="X-end-motor.gcode Slic3r Line Algorithm" src="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.slic3r.line_-283x300.png" alt="" width="283" height="300" /></a>
+<p><small>X-end-motor.gcode, Slic3r, Line Algorithm, @32s</small></p>
+</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.slic3r.hilbertcurve.png"><img class="size-medium wp-image-876" title="X-end-motor.gcode Slic3r Hilbertcurve Algorithm" src="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.slic3r.hilbertcurve-260x300.png" alt="" width="260" height="300" /></a>
+  <p><small>X-end-motor.gcode, Slic3r, Hilbertcurve Algorithm, @7m 20s"</small></p>
+</p>
+
+<p><em>As a sidenote, this highlights another observation I have made: that the current&nbsp;delineation&nbsp;between 3D model (usually STL format) and Gcode seems skewed, and some information that should belong in the model (e.g. fill structure) is delegated to the runtime process. I'll hopefully expand on this in another post, but it's worth mentioning here because perhaps our view of what a reasonable computation time is, would change if it is moved back along the workflow to model generation.</em></p>
+
+<p>So the question: I<em>s there a fill pattern, that provides the same strength and can be computed in the same order of&nbsp;magnitude&nbsp;as the line approach, but which uses less material?</em></p>
+
+<h2>Some Ideas</h2>
+
+<p>Some initial thoughts involve ways of packing other, simpler, 3D forms within the model, which leads to such things as the <a href="http://en.wikipedia.org/wiki/Sphere_packing">sphere packing problem</a>. &nbsp;In this case we would ideally find a solution that has a dense, irregular packing of unequal spheres, where each sphere is the largest possible size for the containing form. Here is where my woeful lack of mathematics causes a real problem. I suspect, but can't be sure, that there is no way of determining such an ideal packing arrangement within the timescale constraints we have set (i.e. minutes, if not quicker).</p>
+
+<p>This also highlights another aspect of the problem: <em>the 3D model we are attempting to fill can be any arbitrary form</em>. If the target model was always a cube, or even always a regular solid, we could potentially pull some tricks (lookup precalculated values perhaps?) in order to use a sphere packing approach. With the prospect of packing non-regular, and potentially very organic, models the problem becomes ever more difficult!</p>
+<p>&nbsp;</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/SpherePackedModel.png"><img class="size-medium wp-image-871" title="Sphere-Packed Model" src="/reprap/assets/images/wp-content/uploads/2012/01/SpherePackedModel-300x166.png" alt="" width="300" height="166" /></a>
+  <p><small>Sphere-Packed Model Example</small></p>
+</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/SpherePackedModel_cutthrough_top.png"><img class="size-medium wp-image-872" title="Sphere-Packed Model, Slice Through" src="/reprap/assets/images/wp-content/uploads/2012/01/SpherePackedModel_cutthrough_top-300x166.png" alt="" width="300" height="166" /></a>
+  <p><small>Sphere-Packed Model, Slice Through</small></p>
+
+</p>
+
+<p>&nbsp;</p>
+
+<p>Another avenue of investigation is whether an arbitrary model can be divided into simpler shapes? &nbsp;The assumption being that working on several simple solids would be easier and quicker than working on a simple complex shape.</p>
+
+<p>Another idea involves using the vertices of the target model as a basis for generating internal edges, perhaps utilising <a href="http://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay triangulation</a> or something similar, but in three dimensions. This would have the benefit of being tailored for each model, but would it guarantee structural strength? How would such an algorithm work in three dimensions?</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.mock_.triangulation.png"><img class="size-medium wp-image-875" title="x-end-motor.gcode.mock.triangulation" src="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.mock_.triangulation-263x300.png" alt="" width="263" height="300" /></a>
+  <p><small>Mockup of slice with example triangulation between nearest vertices</small></p>
+</p>
+
+<p>
+    <a href="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.mock_.delaunaytriangulation.png"><img class="size-medium wp-image-873" title="x-end-motor.gcode.mock.delaunaytriangulation" src="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.gcode_.mock_.delaunaytriangulation-257x300.png" alt="" width="257" height="300" /></a>
+  <p><small>Mockup of slice with example Delaunay triangulation (but not actually correct, only to give an indication)</small></p>
+</p>
+
+<p>Then something dawned on me: do we have to constrain the fill pattern to the boundaries of the target model? What if we had a pre-defined 3D fill pattern, say a honeycomb, which we <em>intersect</em> with the model to produce the fill pattern?</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.stl_.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/x-end-motor.stl_-300x244.png" alt="X-end-motor.stl Mendel Part"/>
+  </a>
+  <p><small>X-end-motor.stl Mendel Part</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/spheremask-2.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/spheremask-2-300x259.png" alt="Sphere Mask"/>
+  </a>
+  <p><small>Sphere Mask</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/ModelMaskOverlay.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/ModelMaskOverlay-300x228.png" alt="Model Mask Overlay"/>
+  </a>
+  <p><small>Model Mask Overlay</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/ModelPackedWithRegularSperes.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/ModelPackedWithRegularSperes-300x282.png" alt="Slice of Model Packed With Regular Spheres"/>
+  </a>
+  <p><small>Slice of Model Packed With Regular Spheres</small></p>
+</p>
+
+<p>The pattern could potentially derive from a <a href="http://commons.wikimedia.org/wiki/Tessellation#3D_tessellation">3D Tessellation</a>.</p>
+
+<p>
+    <a href="http://commons.wikimedia.org/wiki/File:HC-A4.png"><img class="size-medium wp-image-857" title="3D tessellation with truncated octahedron" src="/reprap/assets/images/wp-content/uploads/2012/01/3D-tessellation-with-truncated-octahedron-300x300.png" alt="" width="300" height="300" /></a>
+  <p><small>3D tessellation with truncated octahedron (via Wikipedia)</small></p>
+</p>
+
+<p>Further browsing online leads to <a href="http://www.plunk.org/~hatch/HyperbolicTesselations/">Hyperbolic Planar Tesselations</a>. I have no idea whether something like this could be utilised, but the fractal nature of how the pattern interacts with the boundary could yield ideas for resolving how to give strength to irregular, organic shapes.</p>
+
+<p>
+  <a href="http://www.plunk.org/~hatch/HyperbolicTesselations/"><img class="size-medium wp-image-863" title="Hyperbolic Planar Tesselations" src="/reprap/assets/images/wp-content/uploads/2012/01/Hyperbolic-Planar-Tesselations-300x300.gif" alt="" width="300" height="300" /></a>
+<p><small>Hyperbolic Planar Tesselations (via http://www.plunk.org/~hatch/HyperbolicTesselations)</small></p>
+</p>
+
+<p>&nbsp;</p>
+
+<h2>Mock Print</h2>
+
+<p>In order to get a feel for the problem I decided to mock up such a pattern to print. This led to an interesting realisation, that the various tools available will each work with this solution to varying extents. I played with OpenSCAD, Google Sketchup, Skeinforge and Slic3r whilst trying to manually generate an example structure. I found that concept of internal structure in these tools is rather foreign, and I had to hack a bit to get some results. Most 3D modelling tools I have tried concern themselves with solids, the skin of the model, and not the skeleton. Perhaps there exist CAD programs geared towards engineering which use a&nbsp;skeleton&nbsp;+ skin paradigm? <em>Perhaps this is also worth investigating further?</em></p>
+
+<p>In the end I used OpenSCAD to generate a cube filled with a set of sphere-spaces, and used Skeinforge to slice two models, one with zero infill and one with 30% infill.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/CubeModel.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/CubeModel-300x237.png" alt="Cube Model"/>
+  </a>
+  <p><small>Cube Model</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/SphereMask.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/SphereMask-300x269.png" alt="Sphere Mask"/>
+  </a>
+  <p><small>Sphere Mask</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/CubeWithSphereMaskApplied.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/CubeWithSphereMaskApplied-300x288.png" alt="Cube With Sphere Mask Applied"/>
+  </a>
+  <p><small>Cube With Sphere Mask Applied</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/CubeWithSphereMaskApplied_SectionPlane.png">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/CubeWithSphereMaskApplied_SectionPlane-300x260.png" alt="Cube With Sphere Mask Applied - SectionPlane"/>
+  </a>
+  <p><small>Cube With Sphere Mask Applied - SectionPlane</small></p>
+</p>
+
+<p>It is worth mentioning that I attempted creating a similar structure in Sketchup, but using a real model (Mendel X Motor Mount) and a lattice of spheres (as shown a few paragraphs earlier). &nbsp;Attempting to intersect the spheres with the model caused Sketchup to hang (or rather take an unacceptable amount of time to respond). This perhaps hints at the potential performance problems such a solution may have?</p>
+
+<p>The printed model shows that, for a very basic target shape, the packed sphere approach yields a reasonably rigid object. It is certainly not comparable to a cube filled with 30% line pattern infill, but printing the mock gave me confidence that it is at least worth continuing to research such techniques.</p>
+
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/NoFillLayer1.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/NoFillLayer1-300x225.jpg" alt="No-Fill Layer 1"/>
+  </a>
+  <p><small>No-Fill Layer 1</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/NoFillCompleteSeeThrough.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/NoFillCompleteSeeThrough-300x225.jpg" alt="No-Fill Complete See-Through"/>
+  </a>
+  <p><small>No-Fill Complete See-Through</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/FilledLayer1_2.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/FilledLayer1_2-300x225.jpg" alt="Filled Layer 1"/>
+  </a>
+  <p><small>Filled Layer 1</small></p>
+</p>
+<p>
+  <a href="/reprap/assets/images/wp-content/uploads/2012/01/FilledLayer1.jpg">
+      <img src="/reprap/assets/images/wp-content/uploads/2012/01/FilledLayer1-300x225.jpg" alt="Filled Layer 1"/>
+  </a>
+  <p><small>Filled Layer 1</small></p>
+</p>
+
+<h2>Where Next?</h2>
+
+<p>The goal of writing this post was to collect some thoughts on the subject which I could refer people to for discussion. &nbsp;It would be cool if someone more mathematically-minded could comment on the feasibility of such 3D space filling algorithms. Or if others have had similar ideas on the subject at all!</p>
+
+<p>To summarise:</p>
+
+<ol>
+<li>&nbsp;I think it is worthwhile looking for more efficient fill patterns that take advantage of the 3D nature of the model it is filling.</li>
+<li>The main obstacles are computational intensity and ensuring the resulting model has sufficient strength, regardless of its form.</li>
+<li>It is worth reviewing whether current 3D modelling tools are suitable for defining such things as internal structure. &nbsp;There is potentially an opportunity to develop something interesting here.</li>
+</ol>
+
+<p>I'm going to try and find time to play further and try and throw together perhaps a script to preprocess a model, or perhaps implement a fill algorithm directly. &nbsp;I will also look a bit more at existing tools to see if there is already something out there which allows the definition of internal support structures.</p>
+
+<p>Any feedback would be very welcome!</p>
