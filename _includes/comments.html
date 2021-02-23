@@ -1,0 +1,33 @@
+
+<hr />
+<br />
+<h1>Comments</h1>
+<ul>
+
+  {% for comment in page.comments %}
+
+  <li>
+    <b>
+        {%- if comment.author_url.size > 0 -%}
+           <a href="{{ comment.author_url }}">{{ comment.author }}</a>
+        {%- else -%}
+            {{ comment.author }}
+        {%- endif -%}
+      </b>
+      &nbsp;<small>{{ comment.date | date: "%d-%m-%Y %H:%M" }}</small>
+
+    <br />
+    <br />
+
+    {{ comment.content | newline_to_br }}
+
+    <br />
+    <br />
+
+    <hr />
+  </li>
+
+  {% endfor %}
+
+</ul>
+
